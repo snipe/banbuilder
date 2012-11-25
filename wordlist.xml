@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
-    <!--
-    - Structure schemas
-    -->
-    <pma:structure_schemas>
-        <pma:database name="banbuild_webdb" collation="utf8_general_ci" charset="utf8">
-            <pma:table name="wordlist">
-                CREATE TABLE `wordlist` (
-                  `word_id` int(11) NOT NULL AUTO_INCREMENT,
-                  `word` varchar(40) DEFAULT NULL,
-                  `word_rating` varchar(5) DEFAULT NULL,
-                  `word_type` set('swear','religious','ascii','racial','sexual','other') DEFAULT NULL,
-                  `word_origin` char(2) DEFAULT 'US',
-                  `approved` int(1) NOT NULL DEFAULT '0',
-                  `ip` varchar(100) DEFAULT NULL,
-                  UNIQUE KEY `word_id` (`word_id`)
-                ) ENGINE=MyISAM AUTO_INCREMENT=2227 DEFAULT CHARSET=latin1;
-            </pma:table>
-        </pma:database>
-    </pma:structure_schemas>
 
-    <!--
-    - Database: 'banbuild_webdb'
-    -->
-    <database name="banbuild_webdb">
+        <database name="banbuild_webdb">
         <!-- Table wordlist -->
         <table name="wordlist">
             <column name="word">$#!+</column>
