@@ -1,0 +1,846 @@
+%
+% Structure: wordlist
+%
+ \begin{longtable}{|l|c|c|c|} 
+ \caption{Structure of table wordlist} \label{tab:wordlist-structure} \\
+ \hline \multicolumn{1}{|c|}{\textbf{Column}} & \multicolumn{1}{|c|}{\textbf{Type}} & \multicolumn{1}{|c|}{\textbf{Null}} & \multicolumn{1}{|c|}{\textbf{Default}} \\ \hline \hline
+\endfirsthead
+ \caption{Structure of table wordlist (continued)} \\ 
+ \hline \multicolumn{1}{|c|}{\textbf{Column}} & \multicolumn{1}{|c|}{\textbf{Type}} & \multicolumn{1}{|c|}{\textbf{Null}} & \multicolumn{1}{|c|}{\textbf{Default}} \\ \hline \hline \endhead \endfoot 
+\textbf{\textit{word\_id}} & int(11) & No &  \\ \hline 
+word & varchar(40) & Yes & NULL \\ \hline 
+word\_rating & varchar(5) & Yes & NULL \\ \hline 
+word\_type & set('swear', 'religious', 'ascii', 'racial', 'sexual', 'other') & Yes & NULL \\ \hline 
+word\_origin & char(2) & Yes & US \\ \hline 
+approved & int(1) & No & 0 \\ \hline 
+ip & varchar(100) & Yes & NULL \\ \hline 
+ \end{longtable}
+
+%
+% Data: wordlist
+%
+ \begin{longtable}{|l|} 
+ \hline \endhead \hline \endfoot \hline 
+ \caption{Content of table wordlist} \label{tab:wordlist-data} \\\hline \multicolumn{1}{|c|}{\textbf{word}} \\ \hline \hline  \endfirsthead 
+\caption{Content of table wordlist (continued)} \\ \hline \multicolumn{1}{|c|}{\textbf{word}} \\ \hline \hline \endhead \endfoot
+\$\#!+ \\ \hline 
+\$1ut \\ \hline 
+\$h1t \\ \hline 
+\$hit \\ \hline 
+\$lut \\ \hline 
+'ho \\ \hline 
+'hobag \\ \hline 
+a\$\$ \\ \hline 
+anal \\ \hline 
+anus \\ \hline 
+ass \\ \hline 
+assmunch \\ \hline 
+b1tch \\ \hline 
+ballsack \\ \hline 
+bastard \\ \hline 
+beaner \\ \hline 
+beastiality \\ \hline 
+biatch \\ \hline 
+beeyotch \\ \hline 
+bitch \\ \hline 
+bitchy \\ \hline 
+blow job \\ \hline 
+blow me \\ \hline 
+blowjob \\ \hline 
+bollock \\ \hline 
+bollocks \\ \hline 
+bollok \\ \hline 
+boner \\ \hline 
+boob \\ \hline 
+bugger \\ \hline 
+buttplug \\ \hline 
+c-0-c-k \\ \hline 
+c-o-c-k \\ \hline 
+c-u-n-t \\ \hline 
+c.0.c.k \\ \hline 
+c.o.c.k. \\ \hline 
+c.u.n.t \\ \hline 
+jerk \\ \hline 
+jackoff \\ \hline 
+jackhole \\ \hline 
+j3rk0ff \\ \hline 
+homo \\ \hline 
+hom0 \\ \hline 
+hobag \\ \hline 
+hell \\ \hline 
+h0mo \\ \hline 
+h0m0 \\ \hline 
+goddamn \\ \hline 
+goddammit \\ \hline 
+godamnit \\ \hline 
+god damn \\ \hline 
+ghey \\ \hline 
+ghay \\ \hline 
+gfy \\ \hline 
+gay \\ \hline 
+fudgepacker \\ \hline 
+fudge packer \\ \hline 
+fuckwad \\ \hline 
+fucktard \\ \hline 
+fuckoff \\ \hline 
+fucker \\ \hline 
+fuck-tard \\ \hline 
+fuck off \\ \hline 
+fuck \\ \hline 
+fellatio \\ \hline 
+fellate \\ \hline 
+felching \\ \hline 
+felcher \\ \hline 
+felch \\ \hline 
+fartknocker \\ \hline 
+fart \\ \hline 
+fannybandit \\ \hline 
+fanny bandit \\ \hline 
+faggot \\ \hline 
+fagg \\ \hline 
+fag \\ \hline 
+f.u.c.k \\ \hline 
+f-u-c-k \\ \hline 
+f u c k \\ \hline 
+dyke \\ \hline 
+douchebag \\ \hline 
+douche \\ \hline 
+douch3 \\ \hline 
+doosh \\ \hline 
+dildo \\ \hline 
+dike \\ \hline 
+dick \\ \hline 
+damnit \\ \hline 
+damn \\ \hline 
+dammit \\ \hline 
+d1ldo \\ \hline 
+d1ld0 \\ \hline 
+d1ck \\ \hline 
+d0uche \\ \hline 
+d0uch3 \\ \hline 
+cunt \\ \hline 
+cumstain \\ \hline 
+cum \\ \hline 
+crap \\ \hline 
+coon \\ \hline 
+cock \\ \hline 
+clitoris \\ \hline 
+clit \\ \hline 
+cl1t \\ \hline 
+cawk \\ \hline 
+c0ck \\ \hline 
+jerk0ff \\ \hline 
+jerkoff \\ \hline 
+jizz \\ \hline 
+knob end \\ \hline 
+knobend \\ \hline 
+labia \\ \hline 
+lmfao \\ \hline 
+moolie \\ \hline 
+muff \\ \hline 
+nigga \\ \hline 
+nigger \\ \hline 
+p.u.s.s.y. \\ \hline 
+penis \\ \hline 
+piss \\ \hline 
+piss-off \\ \hline 
+pissoff \\ \hline 
+prick \\ \hline 
+pube \\ \hline 
+pussy \\ \hline 
+queer \\ \hline 
+retard \\ \hline 
+retarded \\ \hline 
+s hit \\ \hline 
+s-h-1-t \\ \hline 
+s-h-i-t \\ \hline 
+s.h.i.t. \\ \hline 
+scrotum \\ \hline 
+sex \\ \hline 
+sh1t \\ \hline 
+shit \\ \hline 
+slut \\ \hline 
+smegma \\ \hline 
+t1t \\ \hline 
+tard \\ \hline 
+terd \\ \hline 
+tit \\ \hline 
+tits \\ \hline 
+titties \\ \hline 
+turd \\ \hline 
+twat \\ \hline 
+vag \\ \hline 
+vagina \\ \hline 
+wank \\ \hline 
+wetback \\ \hline 
+whore \\ \hline 
+whoreface \\ \hline 
+F*ck \\ \hline 
+sh*t \\ \hline 
+pu\$\$y \\ \hline 
+p*ssy \\ \hline 
+diligaf \\ \hline 
+wtf \\ \hline 
+stfu \\ \hline 
+fu*ck \\ \hline 
+fack \\ \hline 
+shite \\ \hline 
+fxck \\ \hline 
+sh!t \\ \hline 
+@sshole \\ \hline 
+assh0le \\ \hline 
+assho!e \\ \hline 
+a\$\$hole \\ \hline 
+a\$\$h0le \\ \hline 
+a\$\$h0!e \\ \hline 
+a\$\$h01e \\ \hline 
+assho1e \\ \hline 
+wh0re \\ \hline 
+f@g \\ \hline 
+f@gg0t \\ \hline 
+f@ggot \\ \hline 
+motherf*cker \\ \hline 
+mofo \\ \hline 
+cuntlicker \\ \hline 
+cuntface \\ \hline 
+dickbag \\ \hline 
+douche waffle \\ \hline 
+jizz bag \\ \hline 
+cockknocker \\ \hline 
+beatch \\ \hline 
+fucknut \\ \hline 
+nucking futs \\ \hline 
+mams \\ \hline 
+carpet muncher \\ \hline 
+ass munch \\ \hline 
+ass hat \\ \hline 
+cunny \\ \hline 
+quim \\ \hline 
+clitty \\ \hline 
+fuck wad \\ \hline 
+kike \\ \hline 
+spic \\ \hline 
+wop \\ \hline 
+chink \\ \hline 
+wet back \\ \hline 
+mother humper \\ \hline 
+feltch \\ \hline 
+feltcher \\ \hline 
+FvCk \\ \hline 
+ahole \\ \hline 
+nads \\ \hline 
+spick \\ \hline 
+douchey \\ \hline 
+Bullturds \\ \hline 
+gonads \\ \hline 
+bitch \\ \hline 
+butt \\ \hline 
+fellatio \\ \hline 
+lmao \\ \hline 
+s-o-b \\ \hline 
+spunk \\ \hline 
+he11 \\ \hline 
+jizm \\ \hline 
+jism \\ \hline 
+bukkake \\ \hline 
+shiz \\ \hline 
+wigger \\ \hline 
+gook \\ \hline 
+ritard \\ \hline 
+reetard \\ \hline 
+masterbate \\ \hline 
+masturbate \\ \hline 
+goatse \\ \hline 
+masterbating \\ \hline 
+masturbating \\ \hline 
+hitler \\ \hline 
+nazi \\ \hline 
+tubgirl \\ \hline 
+GTFO \\ \hline 
+FOAD \\ \hline 
+r-tard \\ \hline 
+rtard \\ \hline 
+hoor \\ \hline 
+g-spot \\ \hline 
+gspot \\ \hline 
+vulva \\ \hline 
+assmaster \\ \hline 
+viagra \\ \hline 
+Phuck \\ \hline 
+frack \\ \hline 
+fuckwit \\ \hline 
+assbang \\ \hline 
+assbanged \\ \hline 
+assbangs \\ \hline 
+asshole \\ \hline 
+assholes \\ \hline 
+asswipe \\ \hline 
+asswipes \\ \hline 
+b1tch \\ \hline 
+bastards \\ \hline 
+bitched \\ \hline 
+bitches \\ \hline 
+blow jobs \\ \hline 
+boners \\ \hline 
+bullshit \\ \hline 
+bullshits \\ \hline 
+bullshitted \\ \hline 
+cameltoe \\ \hline 
+camel toe \\ \hline 
+camel toes \\ \hline 
+chinc \\ \hline 
+chincs \\ \hline 
+chink \\ \hline 
+chode \\ \hline 
+chodes \\ \hline 
+clit \\ \hline 
+clits \\ \hline 
+cocks \\ \hline 
+coons \\ \hline 
+cumming \\ \hline 
+cunts \\ \hline 
+d1ck \\ \hline 
+dickhead \\ \hline 
+dickheads \\ \hline 
+doggie-style \\ \hline 
+dildos \\ \hline 
+douchebags \\ \hline 
+dumass \\ \hline 
+dumb ass \\ \hline 
+dumbasses \\ \hline 
+dykes \\ \hline 
+f-u-c-k \\ \hline 
+faggit \\ \hline 
+fags \\ \hline 
+fucked \\ \hline 
+fucker \\ \hline 
+fuckface \\ \hline 
+fucks \\ \hline 
+godamnit \\ \hline 
+gooks \\ \hline 
+humped \\ \hline 
+humping \\ \hline 
+jackass \\ \hline 
+jap \\ \hline 
+japs \\ \hline 
+jerk off \\ \hline 
+jizzed \\ \hline 
+kikes \\ \hline 
+knobend \\ \hline 
+kooch \\ \hline 
+kooches \\ \hline 
+kootch \\ \hline 
+mother fucker \\ \hline 
+mother fuckers \\ \hline 
+motherfucking \\ \hline 
+niggah \\ \hline 
+niggas \\ \hline 
+niggers \\ \hline 
+p.u.s.s.y. \\ \hline 
+porch monkey \\ \hline 
+porch monkeys \\ \hline 
+pussies \\ \hline 
+queers \\ \hline 
+rim job \\ \hline 
+rim jobs \\ \hline 
+sand nigger \\ \hline 
+sand niggers \\ \hline 
+s0b \\ \hline 
+shitface \\ \hline 
+shithead \\ \hline 
+shits \\ \hline 
+shitted \\ \hline 
+s.o.b. \\ \hline 
+spik \\ \hline 
+spiks \\ \hline 
+twats \\ \hline 
+whack off \\ \hline 
+whores \\ \hline 
+zoophile \\ \hline 
+m-fucking \\ \hline 
+mthrfucking \\ \hline 
+muthrfucking \\ \hline 
+mutherfucking \\ \hline 
+mutherfucker \\ \hline 
+mtherfucker \\ \hline 
+mthrfucker \\ \hline 
+mthrf*cker \\ \hline 
+whorehopper \\ \hline 
+maternal copulator \\ \hline 
+(!) \\ \hline 
+whoralicious \\ \hline 
+whorealicious \\ \hline 
+( Y ) \\ \hline 
+(@ Y @) \\ \hline 
+(. Y .) \\ \hline 
+aeolus \\ \hline 
+Analprobe \\ \hline 
+Areola \\ \hline 
+areole \\ \hline 
+aryan \\ \hline 
+arian \\ \hline 
+asses \\ \hline 
+assfuck \\ \hline 
+azazel \\ \hline 
+baal \\ \hline 
+Babes \\ \hline 
+bang \\ \hline 
+banger \\ \hline 
+Barf \\ \hline 
+bawdy \\ \hline 
+Beardedclam \\ \hline 
+beater \\ \hline 
+Beaver \\ \hline 
+beer \\ \hline 
+bigtits \\ \hline 
+bimbo \\ \hline 
+Blew \\ \hline 
+blow \\ \hline 
+blowjobs \\ \hline 
+blowup \\ \hline 
+bod \\ \hline 
+bodily \\ \hline 
+boink \\ \hline 
+Bone \\ \hline 
+boned \\ \hline 
+bong \\ \hline 
+Boobies \\ \hline 
+Boobs \\ \hline 
+booby \\ \hline 
+booger \\ \hline 
+Bookie \\ \hline 
+Booky \\ \hline 
+bootee \\ \hline 
+bootie \\ \hline 
+Booty \\ \hline 
+Booze \\ \hline 
+boozer \\ \hline 
+boozy \\ \hline 
+bosom \\ \hline 
+bosomy \\ \hline 
+bowel \\ \hline 
+bowels \\ \hline 
+bra \\ \hline 
+Brassiere \\ \hline 
+breast \\ \hline 
+breasts \\ \hline 
+bung \\ \hline 
+babe \\ \hline 
+bush \\ \hline 
+buttfuck \\ \hline 
+cocaine \\ \hline 
+kinky \\ \hline 
+klan \\ \hline 
+panties \\ \hline 
+pedophile \\ \hline 
+pedophilia \\ \hline 
+pedophiliac \\ \hline 
+punkass \\ \hline 
+queaf \\ \hline 
+rape \\ \hline 
+scantily \\ \hline 
+essohbee \\ \hline 
+shithouse \\ \hline 
+smut \\ \hline 
+snatch \\ \hline 
+toots \\ \hline 
+doggie style \\ \hline 
+anorexia \\ \hline 
+bulimia \\ \hline 
+bulimiic \\ \hline 
+burp \\ \hline 
+busty \\ \hline 
+Buttfucker \\ \hline 
+caca \\ \hline 
+cahone \\ \hline 
+Carnal \\ \hline 
+Carpetmuncher \\ \hline 
+cervix \\ \hline 
+climax \\ \hline 
+Cocain \\ \hline 
+Cocksucker \\ \hline 
+Coital \\ \hline 
+coke \\ \hline 
+commie \\ \hline 
+condom \\ \hline 
+corpse \\ \hline 
+Coven \\ \hline 
+Crabs \\ \hline 
+crack \\ \hline 
+Crackwhore \\ \hline 
+crappy \\ \hline 
+cuervo \\ \hline 
+Cummin \\ \hline 
+Cumshot \\ \hline 
+cumshots \\ \hline 
+Cunnilingus \\ \hline 
+dago \\ \hline 
+dagos \\ \hline 
+damned \\ \hline 
+dick-ish \\ \hline 
+dickish \\ \hline 
+Dickweed \\ \hline 
+anorexic \\ \hline 
+prostitute \\ \hline 
+marijuana \\ \hline 
+LSD \\ \hline 
+PCP \\ \hline 
+diddle \\ \hline 
+dawgie-style \\ \hline 
+dimwit \\ \hline 
+dingle \\ \hline 
+doofus \\ \hline 
+dopey \\ \hline 
+douche \\ \hline 
+Drunk \\ \hline 
+Dummy \\ \hline 
+Ejaculate \\ \hline 
+enlargement \\ \hline 
+erect \\ \hline 
+erotic \\ \hline 
+exotic \\ \hline 
+extacy \\ \hline 
+Extasy \\ \hline 
+faerie \\ \hline 
+faery \\ \hline 
+fagged \\ \hline 
+fagot \\ \hline 
+Fairy \\ \hline 
+fisted \\ \hline 
+fisting \\ \hline 
+Fisty \\ \hline 
+floozy \\ \hline 
+fondle \\ \hline 
+foobar \\ \hline 
+foreskin \\ \hline 
+frigg \\ \hline 
+frigga \\ \hline 
+fubar \\ \hline 
+Fucking \\ \hline 
+fuckup \\ \hline 
+ganja \\ \hline 
+gays \\ \hline 
+glans \\ \hline 
+godamn \\ \hline 
+goddam \\ \hline 
+Goldenshower \\ \hline 
+gonad \\ \hline 
+gonads \\ \hline 
+Handjob \\ \hline 
+hebe \\ \hline 
+hemp \\ \hline 
+heroin \\ \hline 
+herpes \\ \hline 
+hijack \\ \hline 
+Hiv \\ \hline 
+Homey \\ \hline 
+Honky \\ \hline 
+hooch \\ \hline 
+hookah \\ \hline 
+Hooker \\ \hline 
+Hootch \\ \hline 
+hooter \\ \hline 
+hooters \\ \hline 
+hump \\ \hline 
+hussy \\ \hline 
+hymen \\ \hline 
+inbred \\ \hline 
+incest \\ \hline 
+injun \\ \hline 
+jerked \\ \hline 
+Jiz \\ \hline 
+Jizm \\ \hline 
+horny \\ \hline 
+junkie \\ \hline 
+junky \\ \hline 
+kill \\ \hline 
+kkk \\ \hline 
+kraut \\ \hline 
+kyke \\ \hline 
+lech \\ \hline 
+leper \\ \hline 
+lesbians \\ \hline 
+lesbos \\ \hline 
+Lez \\ \hline 
+Lezbian \\ \hline 
+lezbians \\ \hline 
+Lezbo \\ \hline 
+Lezbos \\ \hline 
+Lezzie \\ \hline 
+Lezzies \\ \hline 
+Lezzy \\ \hline 
+loin \\ \hline 
+loins \\ \hline 
+lube \\ \hline 
+Lust \\ \hline 
+lusty \\ \hline 
+Massa \\ \hline 
+Masterbation \\ \hline 
+Masturbation \\ \hline 
+maxi \\ \hline 
+Menses \\ \hline 
+Menstruate \\ \hline 
+Menstruation \\ \hline 
+meth \\ \hline 
+molest \\ \hline 
+moron \\ \hline 
+Motherfucka \\ \hline 
+Motherfucker \\ \hline 
+murder \\ \hline 
+Muthafucker \\ \hline 
+nad \\ \hline 
+naked \\ \hline 
+napalm \\ \hline 
+Nappy \\ \hline 
+nazism \\ \hline 
+negro \\ \hline 
+niggle \\ \hline 
+nimrod \\ \hline 
+ninny \\ \hline 
+Nipple \\ \hline 
+nooky \\ \hline 
+Nympho \\ \hline 
+Opiate \\ \hline 
+opium \\ \hline 
+oral \\ \hline 
+orally \\ \hline 
+organ \\ \hline 
+orgasm \\ \hline 
+orgies \\ \hline 
+orgy \\ \hline 
+ovary \\ \hline 
+ovum \\ \hline 
+ovums \\ \hline 
+Paddy \\ \hline 
+pantie \\ \hline 
+panty \\ \hline 
+Pastie \\ \hline 
+pasty \\ \hline 
+Pecker \\ \hline 
+pedo \\ \hline 
+pee \\ \hline 
+Peepee \\ \hline 
+Penetrate \\ \hline 
+Penetration \\ \hline 
+penial \\ \hline 
+penile \\ \hline 
+perversion \\ \hline 
+peyote \\ \hline 
+phalli \\ \hline 
+Phallic \\ \hline 
+Pillowbiter \\ \hline 
+pimp \\ \hline 
+pinko \\ \hline 
+pissed \\ \hline 
+pms \\ \hline 
+polack \\ \hline 
+porn \\ \hline 
+porno \\ \hline 
+pornography \\ \hline 
+pot \\ \hline 
+potty \\ \hline 
+prig \\ \hline 
+prude \\ \hline 
+pubic \\ \hline 
+pubis \\ \hline 
+punky \\ \hline 
+puss \\ \hline 
+Queef \\ \hline 
+quicky \\ \hline 
+Racist \\ \hline 
+racy \\ \hline 
+raped \\ \hline 
+Raper \\ \hline 
+rapist \\ \hline 
+raunch \\ \hline 
+rectal \\ \hline 
+rectum \\ \hline 
+rectus \\ \hline 
+reefer \\ \hline 
+reich \\ \hline 
+revue \\ \hline 
+risque \\ \hline 
+rum \\ \hline 
+rump \\ \hline 
+sadism \\ \hline 
+sadist \\ \hline 
+satan \\ \hline 
+scag \\ \hline 
+schizo \\ \hline 
+screw \\ \hline 
+Screwed \\ \hline 
+scrog \\ \hline 
+Scrot \\ \hline 
+Scrote \\ \hline 
+scrud \\ \hline 
+scum \\ \hline 
+seaman \\ \hline 
+seamen \\ \hline 
+seduce \\ \hline 
+semen \\ \hline 
+sex\_story \\ \hline 
+sexual \\ \hline 
+Shithole \\ \hline 
+Shitter \\ \hline 
+shitty \\ \hline 
+s*o*b \\ \hline 
+sissy \\ \hline 
+skag \\ \hline 
+slave \\ \hline 
+sleaze \\ \hline 
+sleazy \\ \hline 
+sluts \\ \hline 
+smutty \\ \hline 
+sniper \\ \hline 
+snuff \\ \hline 
+sodom \\ \hline 
+souse \\ \hline 
+soused \\ \hline 
+sperm \\ \hline 
+spooge \\ \hline 
+Stab \\ \hline 
+steamy \\ \hline 
+Stiffy \\ \hline 
+stoned \\ \hline 
+strip \\ \hline 
+Stroke \\ \hline 
+whacking off \\ \hline 
+suck \\ \hline 
+sucked \\ \hline 
+sucking \\ \hline 
+tampon \\ \hline 
+tawdry \\ \hline 
+teat \\ \hline 
+teste \\ \hline 
+testee \\ \hline 
+testes \\ \hline 
+Testis \\ \hline 
+thrust \\ \hline 
+thug \\ \hline 
+tinkle \\ \hline 
+Titfuck \\ \hline 
+titi \\ \hline 
+titty \\ \hline 
+whacked off \\ \hline 
+toke \\ \hline 
+tramp \\ \hline 
+trashy \\ \hline 
+tush \\ \hline 
+undies \\ \hline 
+unwed \\ \hline 
+urinal \\ \hline 
+urine \\ \hline 
+uterus \\ \hline 
+uzi \\ \hline 
+valium \\ \hline 
+virgin \\ \hline 
+vixen \\ \hline 
+vodka \\ \hline 
+vomit \\ \hline 
+voyeur \\ \hline 
+vulgar \\ \hline 
+wad \\ \hline 
+wazoo \\ \hline 
+wedgie \\ \hline 
+weed \\ \hline 
+weenie \\ \hline 
+weewee \\ \hline 
+weiner \\ \hline 
+weirdo \\ \hline 
+wench \\ \hline 
+whitey \\ \hline 
+whiz \\ \hline 
+Whored \\ \hline 
+Whorehouse \\ \hline 
+Whoring \\ \hline 
+womb \\ \hline 
+woody \\ \hline 
+x-rated \\ \hline 
+xxx \\ \hline 
+B@lls \\ \hline 
+yeasty \\ \hline 
+yobbo \\ \hline 
+sumofabiatch \\ \hline 
+doggy-style \\ \hline 
+doggy style \\ \hline 
+wang \\ \hline 
+dong \\ \hline 
+d0ng \\ \hline 
+w@ng \\ \hline 
+wh0reface \\ \hline 
+wh0ref@ce \\ \hline 
+wh0r3f@ce \\ \hline 
+tittyfuck \\ \hline 
+tittyfucker \\ \hline 
+tittiefucker \\ \hline 
+cockholster \\ \hline 
+cockblock \\ \hline 
+gai \\ \hline 
+gey \\ \hline 
+faig \\ \hline 
+faigt \\ \hline 
+a55 \\ \hline 
+a55hole \\ \hline 
+gae \\ \hline 
+corksucker \\ \hline 
+rumprammer \\ \hline 
+slutdumper \\ \hline 
+niggaz \\ \hline 
+muthafuckaz \\ \hline 
+gigolo \\ \hline 
+pussypounder \\ \hline 
+herp \\ \hline 
+herpy \\ \hline 
+transsexual \\ \hline 
+gender dysphoria \\ \hline 
+orgasmic \\ \hline 
+cunilingus \\ \hline 
+anilingus \\ \hline 
+dickdipper \\ \hline 
+dickwhipper \\ \hline 
+dicksipper \\ \hline 
+dickripper \\ \hline 
+dickflipper \\ \hline 
+dickzipper \\ \hline 
+homoey \\ \hline 
+queero \\ \hline 
+freex \\ \hline 
+cunthunter \\ \hline 
+shamedame \\ \hline 
+slutkiss \\ \hline 
+shiteater \\ \hline 
+slut devil \\ \hline 
+fuckass \\ \hline 
+fucka\$\$ \\ \hline 
+clitorus \\ \hline 
+assfucker \\ \hline 
+dillweed \\ \hline 
+cracker \\ \hline 
+teabagging \\ \hline 
+shitt \\ \hline 
+azz \\ \hline 
+fuk \\ \hline 
+fucknugget \\ \hline 
+cuntlick \\ \hline 
+g@y \\ \hline 
+@ss \\ \hline 
+beotch \\ \hline 
+ \end{longtable}
+
+%
+% Structure: wordlist
+%
+ \begin{longtable}{|l|c|c|c|} 
+ \caption{Structure of table wordlist} \label{tab:wordlist-structure} \\
+ \hline \multicolumn{1}{|c|}{\textbf{Column}} & \multicolumn{1}{|c|}{\textbf{Type}} & \multicolumn{1}{|c|}{\textbf{Null}} & \multicolumn{1}{|c|}{\textbf{Default}} \\ \hline \hline
+\endfirsthead
+ \caption{Structure of table wordlist (continued)} \\ 
+ \hline \multicolumn{1}{|c|}{\textbf{Column}} & \multicolumn{1}{|c|}{\textbf{Type}} & \multicolumn{1}{|c|}{\textbf{Null}} & \multicolumn{1}{|c|}{\textbf{Default}} \\ \hline \hline \endhead \endfoot 
+\textbf{\textit{word\_id}} & int(11) & No &  \\ \hline 
+word & varchar(40) & Yes & NULL \\ \hline 
+word\_rating & varchar(5) & Yes & NULL \\ \hline 
+word\_type & set('swear', 'religious', 'ascii', 'racial', 'sexual', 'other') & Yes & NULL \\ \hline 
+word\_origin & char(2) & Yes & US \\ \hline 
+approved & int(1) & No & 0 \\ \hline 
+ip & varchar(100) & Yes & NULL \\ \hline 
+ \end{longtable}
