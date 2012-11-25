@@ -1,0 +1,4 @@
+banbuilder
+==========
+
+Banned words
