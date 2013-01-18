@@ -53,6 +53,35 @@
 		
 		<pre><code>$ git clone git@github.com:snipe/banbuilder.git</code></pre>
 		
+		
+
+		<h3>Simple Function</h3>
+		<p>If the script you're implementing this on has regex capabilities, you're in luck. 
+		Your job will be a lot easier, and your wordlist will be a lot shorter, since you 
+		don't need to match on entire words only (and therefore account for every possibility 
+		of that bad word showing up in a compound word), and we can handle case-sensitivity with ease. 
+		In fact, you can ignore 90% of the database included 
+		in this project, and use something like the following: </p>
+		
+		<script src="https://gist.github.com/4569410.js"></script>
+		
+		<h3>What This Script Does</h3>
+		<p>The script above (also included in the test-cli.php file in the downloadable package) will take a 
+		word or phrase and replace the words you put in the $badwords array and replace it with asterisks. 
+		One asterisk for each letter of the word that's being replaced. 
+		So &quot;shit&quot; turns into &quot;****&quot;, &quot;shitty&quot; turns into &quot;****ty&quot;, 
+		etc. This script will honor the original case of the word being cleaned, and it is case-insensitive, 
+		so it will not be tricked by MiXeD CaSE words.</p>
+		
+		<h3>What This Script Doesn't Do</h3>
+		<p>Profanity filtering is actually pretty difficult, 
+		if you want to do it REALLY right, since context is everything. 
+		The word &quot;Dick&quot; can be a crude reference to male genitalia, or to the 
+		nickname of a fellow named Richard. Context is the only way to tell the difference. 
+		This database and PHP script isn't going to be able to determine context. </p>
+		<p>If you put &quot;ass&quot; in your bad word array, legitimate words like 
+		&quot;class&quot; will be turned into &quot;cl***&quot;, so choose your words wisely.</p>
+		
 		<h3>Warning, Not For All Audiences, Blah Blah Blah...</h3>
 		<p>There are over 800 words in the database so far. It should probably 
 		go without saying that this content is NOT SAFE FOR WORK and is 
@@ -65,14 +94,6 @@
 		list to suit your needs, removing some words from the banned-word list that you 
 		feel are too restrictive.</p>
 
-
-		<h3>Simple Function</h3>
-		<p>If the script you're implementing this on has regex capabilities, you're in luck. Your job 
-		will be a lot easier. In fact, you can ignore 90% of the database included in this project, and use something like the following: </p>
-		
-		<script src="https://gist.github.com/4569410.js"></script>
-
-		
 		
 		<h3>About This Project</h3>
 		<p>On the forums I run, I tend to be fairly lenient on what my users can get 
@@ -82,9 +103,6 @@
 		needed to be locked down pretty tight, which meant that my standard list of 
 		banned words wouldn't even come close to fitting the bill. </p>
 		
-		<p>As I was putting this list together, I reached out to my filthy-mouthed 
-		friends to gather words for the ban list. It occurred to me that collectively, 
-		we could accomplish a lot more.</p>
 		
 		<h3>About Me</h3>
 		<p>I'm just a nerd that occasionally comes up with 
