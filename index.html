@@ -66,6 +66,106 @@
 		feel are too restrictive.</p>
 
 
+		<h3>Simple Function</h3>
+		<p>If the script you're implementing this on has regex capabilities, you're in luck. Your job 
+		will be a lot easier. In fact, you can ignore 90% of the database included in this project, and use something like the following: </p>
+		
+		<pre><code><?php
+		function censorString($string) {  
+		// strip punctuation
+		$string = preg_replace("/[^a-zA-Z 0-9]+/", "", trim($string));
+		
+		// create your array of bad words       
+        $badwords = array(
+        'ass',
+        'fuk',
+        'fag',
+        'tit',
+        'cum',
+        'jiz',
+        'vag',
+        'cunt',
+        'kunt',
+        'fuck',
+        'piss',
+        'twat',
+        'slut',
+        'blow',
+        'boob',
+        'bewb',
+        'b00b',
+        'dick',
+        'jizz',
+        'shit',
+        'shlt',
+        'sh1t',
+        'hell',
+        'cock',
+        'c0ck',
+        'wank',
+        'cawk',
+        'kike',
+        'k1k3',
+        'gook',
+        'g00k',
+        'spoo',
+        'sp00)',
+        'bitch',
+        'whore',
+        'wh0re',
+        'wh0r3',
+        'queef',
+        'dildo',
+        'spick',
+        'penis',
+        'pen1s',
+        'p3n1s',
+        'labia',
+        'vulva)',
+        'rimjob',
+        'douche',
+        'honkey',
+        'nigger',
+        'n1gger',
+        'n1gg3r',
+        'vagina',
+        'spooge',
+        'sp00ge',
+        'sp00g3',
+        'bastard',
+        'b4st4rd',
+        'handjob',
+        'handj0b',
+        'nutsack',
+        'humping',
+        'abortion',
+        'ab0rti0n',
+        'ab0rt10n',
+        'bestiality',
+        'beastiality',
+        'IntelSucks',
+        'IntelBlows',
+        'SuckitIntel'
+         );
+        
+       // iterate through the badwords array to figure out how many stars the 
+       // replacement should have based on the length of the original bad word    
+      for ($x=0; $x<count($badwords); $x++) {
+      	$stars='';
+      	for ($y=0; $y < strlen($badwords[$x]); $y++) {
+      		$stars.="*"; 
+      	}
+      	$replacements[$x]=$stars;
+      }
+      
+      print_r($replacements);
+      $newstring = str_ireplace($badwords, $replacements, $string);
+      return $newstring;
+      
+}</code></pre>
+
+<p>Then to invoke this censor script, you could use something like: </p>
+		
 		
 		<h3>About This Project</h3>
 		<p>On the forums I run, I tend to be fairly lenient on what my users can get 
