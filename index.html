@@ -70,7 +70,8 @@
 		<p>If the script you're implementing this on has regex capabilities, you're in luck. Your job 
 		will be a lot easier. In fact, you can ignore 90% of the database included in this project, and use something like the following: </p>
 		
-		<pre><code><?php
+		<pre><code>
+	
 		function censorString($string) {  
 		// strip punctuation
 		$string = preg_replace("/[^a-zA-Z 0-9]+/", "", trim($string));
