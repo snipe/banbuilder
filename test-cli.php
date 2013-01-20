@@ -6,105 +6,103 @@
 * Usage (via command line): /path/to/php test-cli.php "snipe is a bitch, but she knows her shit. NO BULLSHIT."
 * 
 * Output:
-* ORIGINAL: snipe is a bitch, but she knows her shit. NO BULLSHIT. 
-* PROCESSED: snipe is a ***** but she knows her **** NO BULL**** 
+* ORIGINAL:      snipe is a bitch, but she knows her shit. NO BULLSH!T. 
+* SUBSITUTIONS:  snipe is a bitch, but she knows her shit. NO BULLSHiT.
+* PROCESSED:     snipe is a *****, but she knows her ****. NO BULL****.
 */
 
-$orig = '';
-$censored ='';
-for ($x=1; $x<count($argv); $x++) {
-	$orig .= trim($argv[$x]).' ';
-	$censored .= censorString(trim($argv[$x])).' ';
-}			
-		
-		
-		
-echo "\nORIGINAL: ".$orig."\nPROCESSED: ".$censored."\n\n";
+$censored = censorString(trim($argv[1]));			
+echo "\nORIGINAL:      ".$argv[1]."\nSUBSITUTIONS:  ".$censored['tmp']."\nPROCESSED:     ".$censored['clean']."\n\n";
  
 function censorString($string) {  
-		// strip punctuation
-		$string = preg_replace("/[^a-zA-Z 0-9]+/", "", trim($string));
-		       
+		     
         $badwords = array(
-        'ass',
-        'fuk',
-        'fag',
-        'tit',
-        'cum',
-        'jiz',
-        'vag',
-        'cunt',
-        'kunt',
-        'fuck',
-        'piss',
-        'twat',
-        'slut',
-        'blow',
-        'boob',
-        'bewb',
-        'b00b',
-        'dick',
-        'jizz',
-        'shit',
-        'shlt',
-        'sh1t',
-        'hell',
-        'cock',
-        'c0ck',
-        'wank',
-        'cawk',
-        'kike',
-        'k1k3',
-        'gook',
-        'g00k',
-        'spoo',
-        'sp00',
-        'bitch',
-        'whore',
-        'wh0re',
-        'wh0r3',
-        'queef',
-        'dildo',
-        'spick',
-        'penis',
-        'pen1s',
-        'p3n1s',
-        'labia',
-        'vulva',
-        'rimjob',
-        'douche',
-        'honkey',
-        'nigger',
-        'n1gger',
-        'n1gg3r',
-        'vagina',
-        'spooge',
-        'sp00ge',
-        'sp00g3',
-        'bastard',
-        'b4st4rd',
-        'handjob',
-        'handj0b',
-        'nutsack',
-        'humping',
-        'abortion',
-        'ab0rti0n',
-        'ab0rt10n',
-        'bestiality',
-        'beastiality',
+	        'ass',
+	        'fuk',
+	        'fag',
+	        'tit',
+	        'cum',
+	        'jiz',
+	        'vag',
+	        'cunt',
+	        'kunt',
+	        'fuck',
+	        'piss',
+	        'twat',
+	        'slut',
+	        'blow',
+	        'boob',
+	        'bewb',
+	        'dick',
+	        'jizz',
+	        'shit',
+	        'hell',
+	        'cock',
+	        'wank',
+	        'cawk',
+	        'kike',
+	        'gook',
+	        'spoo',
+	        'bitch',
+	        'whore',
+	        'queef',
+	        'dildo',
+	        'spick',
+	        'penis',
+	        'pen1s',
+	        'labia',
+	        'vulva',
+	        'rimjob',
+	        'douche',
+	        'honkey',
+	        'nigger',
+	        'vagina',
+	        'spooge',
+	        'bastard',
+	        'handjob',
+	        'nutsack',
+	        'humping',
+	        'abortion',
+	        'bestiality',
+	        'beastiality',
+         );
+         
+         $notsoclever = array(
+         	'0' => 'o',
+         	'1' => 'i',       	
+         	'7' => 't',
+         	'5' => 's',
+         	'4' => 'a',
+         	'8' => 'b',
+         	'3' => 'e',   
+         	'!' => 'i',
+         	'$' => 's',     	
          );
         
-             
-      for ($x=0; $x<count($badwords); $x++) {
-      	$stars='';
-      	for ($y=0; $y < strlen($badwords[$x]); $y++) {
-      		$stars.="*"; 
-      	}
-      	$replacements[$x]=$stars;
-      }
-      
-      $newstring = str_ireplace($badwords, $replacements, $string);
+        // break the string out by spaces
+        $words = explode(" ", $string);
+        
+        // loop through the word array
+        for ($x=0; $x<count($words); $x++) {
+        
+        	// first replace known numeric and symbol substitutions 
+        	$newstring['tmp'] = str_ireplace(array_keys($notsoclever), 
+        		array_values($notsoclever), $string);	
+        	
+        		// then replace the badwords with the appropriate number of stars
+        		for ($x=0; $x<count($badwords); $x++) {
+		      	$stars='';
+		      	
+			      	for ($y=0; $y < strlen($badwords[$x]); $y++) {
+			      		$stars.="*"; 
+			      	}
+		      	
+		      	$replacements[$x]=$stars;
+		      	}
+		      	
+		      $newstring['clean'] = str_ireplace($badwords, $replacements, $newstring['tmp']);
+        }
+     
       return $newstring;
       
 }
-
