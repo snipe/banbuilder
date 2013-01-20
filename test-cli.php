@@ -18,6 +18,7 @@ function censorString($string) {
 		     
         $badwords = array(
 	        'ass',
+	        'anal',
 	        'fuk',
 	        'fag',
 	        'tit',
