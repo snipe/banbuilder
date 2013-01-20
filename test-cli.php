@@ -80,28 +80,22 @@ function censorString($string) {
          	'$' => 's',     	
          );
         
+        
+       // $newstring=  preg_replace($patterns, $replacement, $input);
+         
+         
         // break the string out by spaces
         $words = explode(" ", $string);
         
         // loop through the word array
         for ($x=0; $x<count($words); $x++) {
-        
+        echo strlen($badwords[$x]);
         	// first replace known numeric and symbol substitutions 
-        	$newstring['tmp'] = str_ireplace(array_keys($notsoclever), 
-        		array_values($notsoclever), $string);	
-        	
-        		// then replace the badwords with the appropriate number of stars
-        		for ($x=0; $x<count($badwords); $x++) {
-		      	$stars='';
+        	$newstring['tmp'] = str_ireplace(array_keys($notsoclever),array_values($notsoclever), $string);	
 		      	
-			      	for ($y=0; $y < strlen($badwords[$x]); $y++) {
-			      		$stars.="*"; 
-			      	}
-		      	
-		      	$replacements[$x]=$stars;
-		      	}
-		      	
-		      $newstring['clean'] = str_ireplace($badwords, $replacements, $newstring['tmp']);
+		      $newstring['clean'] = str_ireplace($badwords, str_repeat('*',strlen($badwords[$x])), $newstring['tmp']);
+		      //$newstring['clean']=  preg_replace($badwords, $replacements, $newstring['tmp']);
+		      //$newstring['clean'] = preg_replace('/\b'.$badwords.'\b/ie',"str_repeat('*',strlen('$0'))",$newstring);
         }
      
       return $newstring;
