@@ -56,15 +56,17 @@ $censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 
 		<p>After that, use <code>$censored['clean']</code> to refer to the cleaned version, and <code>$censored['orig']</code> to the original string.</p>
 		
-		<p>NOTE: If you don't use convert special characters to their HTML counterparts (for example <code>htmlentities()</code> in 
-		the input you're sending to the function, it will not match against special characters that are 
+		<p>NOTE: If you don't use convert special characters to their HTML counterparts (for example, using <code>htmlentities()</code> 
+		as in the example above), it will not match against special characters that are 
 		sent through. </p>
 		
 		<p>For example, if a user submits &quot;&cent;unt&quot;, it will not be detected as a matching bad word if you 
-		do not convert your string to special characters. The script is looking for &amp;cent;, NOT &cent;.  </p>
+		do not convert your string to special characters. The script is looking for <code>&cent;</code>, NOT the literal &cent; symbol. 
+		Just convert your string to HTML entities and you'll be fine. </p>
 		
 		<p>Also, this example doesn't use any user-submitted data escaping, since I did't want my example to 
-		interfere with the data cleansing you might be doing. You must absolutely never send unvalidated data through to your server.</p>
+		interfere with the data cleansing you might be doing. <strong>You must absolutely never send 
+		unvalidated data through to your server or back out to the browser. NO exceptions.</strong></p>
 		
 		<h3>Important Note: No profanity filter is flawless </h3>
 		<p>No banned-word list is going to be 
