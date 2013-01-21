@@ -39,6 +39,7 @@ $badwords = array(
 		'pen1s',
 		'penis',
 		'piss',
+		'pussy',
 		'queef',
 		'rimjob',
 		'shit',
