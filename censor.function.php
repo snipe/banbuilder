@@ -2,7 +2,7 @@
 function censorString($string, $badwords) {  
               
 		$leet_replace = array();
-		$leet_replace['a']= '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å)';
+		$leet_replace['a']= '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α)';
 		$leet_replace['b']= '(b|b\.|b\-|8|\|3|ß|Β|β)';
 		$leet_replace['c']= '(c|c\.|c\-|Ç|ç|¢|€|<|\(|{)';
 		$leet_replace['d']= '(d|d\.|d\-|&part;|\|\)|Þ|Ð)';
@@ -16,17 +16,17 @@ function censorString($string, $badwords) {
 		$leet_replace['l']= '(l|1\.|l\-|!|\||\]\[|]|£)';
 		$leet_replace['m']= '(m|m\.|m\-)';
 		$leet_replace['n']= '(n|n\.|n\-)';
-		$leet_replace['o']= '(o|o\.|o\-|0|Ο|ο)';
+		$leet_replace['o']= '(o|o\.|o\-|0|Ο|ο|Φ)';
 		$leet_replace['p']= '(p|p\.|p\-|ρ|Ρ)';
 		$leet_replace['q']= '(q|q\.|q\-)';
-		$leet_replace['r']= '(r|r\.|r\-)';
-		$leet_replace['s']= '(s|s\.|s\-|5|\$)';
+		$leet_replace['r']= '(r|r\.|r\-|®)';
+		$leet_replace['s']= '(s|s\.|s\-|5|\$|§)';
 		$leet_replace['t']= '(t|t\.|t\-)';
-		$leet_replace['u']= '(u|u\.|u\-)';
+		$leet_replace['u']= '(u|u\.|u\-|υ)';
 		$leet_replace['w']= '(w|w\.|w\-)';
-		$leet_replace['x']= '(x|x\.|x\-)';
-		$leet_replace['y']= '(y|y\.|y\-|¥|γ)';
-		$leet_replace['z']= '(z|z\.|z\-)';
+		$leet_replace['x']= '(x|x\.|x\-|Χ|χ)';
+		$leet_replace['y']= '(y|y\.|y\-|¥|γ|ÿ|ý)';
+		$leet_replace['z']= '(z|z\.|z\-|Ζ)';
      
         $words = explode(" ", $string);
                 
