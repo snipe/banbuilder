@@ -44,9 +44,9 @@
 
 
 		<h3>Quickstart</h3>
-		<p>There are basically only 2 files you need to start using this right away: <code>censor.functions.php</code> 
-		and <code>wordlist-regex.php</code>. 
-		The code below will include those two files, and return an array that contains your 
+		<p>There are basically only two files you need to start using this right away: <code>censor.functions.php</code> 
+		and <code>wordlist-regex.php</code>. </p>
+		<p>The code below will include those two files, and return an array that contains your 
 		original string (<code>$YOURSTRING</code> in the example below), and the cleaned string.</p>
 		
 <pre><code>include('wordlist-regex.php');
@@ -60,7 +60,7 @@ $censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 		as in the example above), it will not match against special characters that are 
 		sent through. </p>
 		
-		<p>For example, if a user submits &quot;&cent;unt&quot;, it will not be detected as a matching bad word if you 
+		<p>For example, if a user submits <code>&quot;&cent;unt&quot;</code>, it will not be detected as a matching bad word if you 
 		do not convert your string to special characters. The script is looking for <code>&amp;cent;</code>, NOT the literal <code>&cent;</code> symbol. 
 		Just convert your string to HTML entities and you'll be fine. </p>
 		
