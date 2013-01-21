@@ -26,6 +26,7 @@ $badwords = array(
 		'faggot',
 		'fuck',
 		'fuk',
+		'gangbang',
 		'gook',
 		'handjob',
 		'hell',
