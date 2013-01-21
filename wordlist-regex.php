@@ -45,6 +45,7 @@ $badwords = array(
 		'queef',
 		'queer',
 		'rimjob',
+		'rape',
 		'shit',
 		'slut',
 		'spick',
