@@ -44,14 +44,14 @@
 
 
 		<h3>Quickstart</h3>
-		<p>There are basically only 2 files you need to start using this right away: censor.functions.php and wordlist-regex.php. 
+		<p>There are basically only 2 files you need to start using this right away: <code>censor.functions.php</code> and <code>wordlist-regex.php</code>. 
 		The code below will include those two files, and return an array that contains your original string, and the cleaned string.</p>
 		
-		<pre><code>
-		include('wordlist-regex.php');
-		include('censor.function.php');
-		$censored = censorString(htmlentities(trim($argv[1])), $badwords);
-		</code></pre>
+<pre><code>
+include('wordlist-regex.php');
+include('censor.function.php');
+$censored = censorString(htmlentities(trim($argv[1])), $badwords);
+</code></pre>
 
 		<p>After that, use <code>$censored['clean']</code> to refer to the cleaned version, and <code>$censored['orig']</code> to the original string.</p>
 		
@@ -66,7 +66,7 @@
 		
 		<h3>What This Script Does</h3>
 		<p>The script will take a 
-		word or phrase and replace the words you put in the $badwords array and replace it with asterisks. 
+		word or phrase and replace the words you put in the <code>$badwords</code> array and replace it with asterisks. 
 		One asterisk for each letter of the word that's being replaced. 
 		So &quot;shit&quot; turns into &quot;****&quot;, &quot;shitty&quot; turns into &quot;****ty&quot;, 
 		etc. This script will honor the original case of the word being cleaned, and it is case-insensitive, 
