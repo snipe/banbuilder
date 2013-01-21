@@ -81,13 +81,13 @@ $censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 		<p>The script will take a 
 		word or phrase and replace the words you put in the <code>$badwords</code> array and replace it with asterisks. 
 		One asterisk for each letter of the word that's being replaced. 
-		So &quot;shit&quot; turns into &quot;****&quot;, &quot;shitty&quot; turns into &quot;****ty&quot;, 
-		etc. This script will honor the original case of the word being cleaned, and it is case-insensitive, 
+		So <code>shit</code> turns into <code>****</code>, <code>shitty</code> turns into <code>****ty</code>, 
+		etc. This script will honor the original case of the word being cleaned, and it is <strong>case-insensitive</strong>, 
 		so it will not be tricked by MiXeD CaSE words.</p>
 		
 		<p>It will also look for common leetspeak-style substitutions, for example using foreign 
 		characters or combinations of numbers and symbols to create text that looks the same - 
-		like using pipe-parenthasis to create a "D", as |). I haven't finished all of those filters yet, 
+		like using pipe-parenthasis to create a <code>D</code>, as <code>|)</code>. I haven't finished all of those filters yet, 
 		but I have a good start.  If you wish to twiddle those to add or remove, they can be found in the 
 		<code>censor.function.php</code> file in the master branch, in the <code>$leet_replace array</code>.</p>
 	
