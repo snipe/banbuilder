@@ -46,15 +46,15 @@
 		<h3>Quickstart</h3>
 		<p>There are basically only two files you need to start using this right away: <code>censor.functions.php</code> 
 		and <code>wordlist-regex.php</code>. </p>
-		<p>The code below will include those two files, and return an array that contains your 
-		original string (<code>$YOURSTRING</code> in the example below), and the cleaned string.</p>
+		<p>The code below includes those two files, passes a string to the function (<code>$YOURSTRING</code>), and return an array that contains your 
+		original string and the cleaned string.</p>
 		
 <pre><code>include('wordlist-regex.php');
 include('censor.function.php');
 $censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 </code></pre>
 
-		<p>After that, use <code>$censored['clean']</code> to refer to the cleaned version, and <code>$censored['orig']</code> to the original string.</p>
+		<p>Now you can use <code>$censored['clean']</code> to refer to the cleaned version, and <code>$censored['orig']</code> to the original string.</p>
 		
 		<p>NOTE: If you don't use convert special characters to their HTML counterparts (for example, using <code>htmlentities()</code> 
 		as in the example above), it will not match against special characters that are 
