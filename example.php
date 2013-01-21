@@ -1,9 +1,10 @@
 <?php
 /**
-* This is a simple command line script to test whether the words you've 
+* This is a simple script to test whether the words you've 
 * added will be properly censored in a sentence format.
 * 
-* Usage (via command line): /path/to/php test-cli.php "snipe is a bitch, but she knows her shit. NO BULLSHIT."
+* Usage via command line: /path/to/php example.php "snipe is a bitch, but she knows her shit. NO BULLSHIT."
+* Usage via www: /url/example.php?snipe is a bitch but she's fucking great! NO BULLSHIT.
 * 
 * Output:
 * ORIGINAL:      snipe is a bitch, but she knows her shit. NO BULLSH!T. 
@@ -13,8 +14,20 @@
 
 include('wordlist-regex.php');
 include('censor.function.php');
-$censored = censorString(htmlentities(trim($argv[1])), $badwords);			
-echo "\nPURE: ".$argv[1]."\nORIGINAL:      ".$censored['orig']."\nPROCESSED:     ".$censored['clean']."\n\n";
+
+// cli or www?
+if (isset($argv)) {
+	// get input from CLI
+	$input = htmlentities(trim($argv[1]));
+} else {
+	// input is the whole querystring
+	$input = urldecode($_SERVER['QUERY_STRING']);
+	// no HTML
+	header('Content-Type: text/plain');
+}
+
+$censored = censorString($input, $badwords);			
+echo "\nPURE: ".$input."\nORIGINAL:      ".$censored['orig']."\nPROCESSED:     ".$censored['clean']."\n\n";
  
 
 

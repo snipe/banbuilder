@@ -1,5 +1,12 @@
 <?php
-function censorString($string, $badwords) {  
+/**
+ *  Apply censorship to $string, replacing $badwords with $censorChar.
+ *  @param        string          $string        String to be censored.
+ *  @param        string[int]     $badwords      Array of badwords.
+ *  @param        string          $censorChar    1-char string which replaces bad words. Default: '*'
+ *  string[string]
+ */
+function censorString($string, $badwords, $censorChar = '*') {  
               
 		$leet_replace = array();
 		$leet_replace['a']= '(a|a\.|a\-|4|@|&Atilde;|&auml;|&Auml;|&acirc;|&Acirc;|&agrave;|&Agrave;)';
@@ -32,7 +39,7 @@ function censorString($string, $badwords) {
                 
         for ($x=0; $x<count($badwords); $x++) {
 
-        	$replacement[$x] = str_repeat('*',strlen($badwords[$x]));
+        	$replacement[$x] = str_repeat($censorChar,strlen($badwords[$x]));
         	$badwords[$x] =  '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
         }
         
