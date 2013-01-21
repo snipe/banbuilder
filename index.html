@@ -44,15 +44,27 @@
 
 
 		<h3>Quickstart</h3>
-		<p>There are basically only 2 files you need to start using this right away: <code>censor.functions.php</code> and <code>wordlist-regex.php</code>. 
-		The code below will include those two files, and return an array that contains your original string, and the cleaned string.</p>
+		<p>There are basically only 2 files you need to start using this right away: <code>censor.functions.php</code> 
+		and <code>wordlist-regex.php</code>. 
+		The code below will include those two files, and return an array that contains your 
+		original string (<code>$YOURSTRING</code> in the example below), and the cleaned string.</p>
 		
 <pre><code>include('wordlist-regex.php');
 include('censor.function.php');
-$censored = censorString(htmlentities(trim($argv[1])), $badwords);
+$censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 </code></pre>
 
 		<p>After that, use <code>$censored['clean']</code> to refer to the cleaned version, and <code>$censored['orig']</code> to the original string.</p>
+		
+		<p>NOTE: If you don't use convert special characters to their HTML counterparts (for example <code>htmlentities()</code> in 
+		the input you're sending to the function, it will not match against special characters that are 
+		sent through. </p>
+		
+		<p>For example, if a user submits &quot;&cent;unt&quot;, it will not be detected as a matching bad word if you 
+		do not convert your string to special characters. The script is looking for &amp;cent;, NOT &cent;.  </p>
+		
+		<p>Also, this example doesn't use any user-submitted data escaping, since I did't want my example to 
+		interfere with the data cleansing you might be doing. You must absolutely never send unvalidated data through to your server.</p>
 		
 		<h3>Important Note: No profanity filter is flawless </h3>
 		<p>No banned-word list is going to be 
@@ -75,7 +87,8 @@ $censored = censorString(htmlentities(trim($argv[1])), $badwords);
 		characters or combinations of numbers and symbols to create text that looks the same - 
 		like using pipe-parenthasis to create a "D", as |). I haven't finished all of those filters yet, 
 		but I have a good start.  If you wish to twiddle those to add or remove, they can be found in the 
-		censor.function.php file in the master branch, in the $leet_replace array.</p>
+		<code>censor.function.php</code> file in the master branch, in the <code>$leet_replace array</code>.</p>
+	
 		
 		<h3>What This Script Doesn't Do</h3>
 		<p>Profanity filtering is actually pretty difficult, 
