@@ -61,7 +61,7 @@ $censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 		sent through. </p>
 		
 		<p>For example, if a user submits &quot;&cent;unt&quot;, it will not be detected as a matching bad word if you 
-		do not convert your string to special characters. The script is looking for <code>&cent;</code>, NOT the literal &cent; symbol. 
+		do not convert your string to special characters. The script is looking for <code>&amp;cent;</code>, NOT the literal <code>&cent;</code> symbol. 
 		Just convert your string to HTML entities and you'll be fine. </p>
 		
 		<p>Also, this example doesn't use any user-submitted data escaping, since I did't want my example to 
