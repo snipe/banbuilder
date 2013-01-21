@@ -47,11 +47,11 @@
 		<p>There are basically only 2 files you need to start using this right away: censor.functions.php and wordlist-regex.php. 
 		The code below will include those two files, and return an array that contains your original string, and the cleaned string.</p>
 		
-<code>```php
+```php
 include('wordlist-regex.php');
 include('censor.function.php');
 $censored = censorString(htmlentities(trim($argv[1])), $badwords);
-```</code>
+
 
 		<p>After that, use <code>$censored['clean']</code> to refer to the cleaned version, and <code>$censored['orig']</code> to the original string.</p>
 		
