@@ -47,8 +47,7 @@
 		<p>There are basically only 2 files you need to start using this right away: <code>censor.functions.php</code> and <code>wordlist-regex.php</code>. 
 		The code below will include those two files, and return an array that contains your original string, and the cleaned string.</p>
 		
-<pre><code>
-include('wordlist-regex.php');
+<pre><code>include('wordlist-regex.php');
 include('censor.function.php');
 $censored = censorString(htmlentities(trim($argv[1])), $badwords);
 </code></pre>
@@ -86,9 +85,14 @@ $censored = censorString(htmlentities(trim($argv[1])), $badwords);
 		This database and PHP script isn't going to be able to determine context. </p>
 		
 		<p>If you put &quot;ass&quot; in your bad word array, legitimate words like 
-		&quot;class&quot; will be turned into &quot;cl***&quot;, so choose your words wisely.</p>
+		&quot;class&quot; will be turned into &quot;cl***&quot;, so choose your words wisely. This, 
+		and a lack of context-understanding, is a limitation of profanity filters in general and it isn't unique to 
+		this one. It is possible to create a whitelist of words on top of your blacklist, to specify 
+		legitimate words that might have an exactly matching swear word within it (like "assign", "classy", etc), 
+		but the creation and maintenance of that list would impractical, and running every string 
+		through it would increase processing time considerably. </p>
 		
-		<p>In general, profanity filters just don't work. </p>
+		<p><strong>In general, profanity filters just don't work.</strong> At least not the way we want them to. </p>
 		<blockquote>"Obscenity filtering is an enduring, maybe even timeless problem. 
 		I'm doubtful it will ever be possible to solve this particular problem through 
 		code alone. But it seems some companies and developers can't stop tilting at 
@@ -104,14 +108,7 @@ $censored = censorString(htmlentities(trim($argv[1])), $badwords);
 		</p>
 		
 			
-		<h3>About This Project</h3>
-		<p>On the forums I run, I tend to be fairly lenient on what my users can get 
-		away with, blocking only the most offensive and racist terms. This project 
-		started after I was forced to create and review yet another banned word list, 
-		this time for a client project targeted towards young adults. The banlist 
-		needed to be locked down pretty tight, which meant that my standard list of 
-		banned words wouldn't even come close to fitting the bill. </p>
-		
+		<h3>About This Project</h3>		
 		<p>In the repo, over 800 naughty words are available in the following formats: </p>
 		
 		<ul>
