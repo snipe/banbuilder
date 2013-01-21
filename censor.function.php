@@ -40,7 +40,6 @@ function censorString($string, $badwords) {
         $newstring['orig'] = html_entity_decode($string);
         $newstring['clean'] =  preg_replace($badwords,$replacement, $newstring['orig']);    
         
-        print_r($badwords);
         return $newstring;
            
 }
