@@ -5,6 +5,21 @@ Banbuilder is a PHP function and bad word database for profanity filtering. The 
 
 The database of profanity is located in the wordlist-regex.php file, and is a simple PHP array. 
 
+Usage
+------
+Simply require the database file and the function file, and invoke the function:
+
+     include('wordlist-regex.php');
+     include('censor.function.php');
+     $censored = censorString($input, $badwords); 
+
+You end up with an array called <code>$censored</code>. You can access the original, uncensored string as <code>$censored['orig']</code> and the newly censored string as <code>$censored['clean']</code>.
+
+There is an optional parameter that you can pass to use a different replacement character. For example:
+     $censored = censorString($input, $badwords,'X');  
+
+Will replace "bitch" to "XXXXX" instead of the default "*****".
+
 Summary
 -------
 In a nutshell, this code takes your array of bad words and compares it to an array of common filter-evasion tactics. It then does a string replacement to insert regex parameters into your badwords array, and then evaluates your input string to that expanded banned word list.
