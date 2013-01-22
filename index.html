@@ -36,6 +36,22 @@
 		there are times when a banned-word list is necessary, especially if the 
 		application or site is geared towards younger users or corporate environments.</p>
 		
+		<h3>What This Script Does</h3>
+		<p>The script will take a 
+		word or phrase and replace the words you put in the <code>$badwords</code> array and replace it with asterisks. </p>
+		
+		<ul>
+			<li>Case insensitive</li>
+			<li>Looks for &quot;leetspeak&quot;-style combinations of foreign characters, numbers and symbols</li>
+			<li>Uses regex, so your badword list stays short</li>
+			<li>Uses asterisks as the replacement, but you can specify your own character
+			<li>Add as many bad words as you like</li>
+		</ul>
+
+		<p>I haven't finished all of the leetspeak filters yet, 
+		but I have a good start so far.  If you wish to twiddle those to add or remove, they can be found in the 
+		<code>censor.function.php</code> file in the master branch, in the <code>$leet_replace</code> array.</p>
+		
 		<h3>How to Get It?</h3>
 		<p>Just click on the tar.gz or .zip icons above to download the files. Or 
 		if you prefer, you can clone the repo: </p>
@@ -44,62 +60,27 @@
 
 
 		<h3>Quickstart</h3>
-		<p>There are basically only two files you need to start using this right away: <code>censor.functions.php</code> 
-		and <code>wordlist-regex.php</code>. </p>
-		<p>The code below includes those two files, passes a string to the function (<code>$YOURSTRING</code>), and return an array that contains your 
-		original string and the cleaned string.</p>
+		<p>Check out the <a href="https://github.com/snipe/banbuilder/blob/master/README.md">README</a> in 
+		the repo to get started. It's as simple as including two files and invoking a function. </p>
 		
-<pre><code>include('wordlist-regex.php');
-include('censor.function.php');
-$censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
-</code></pre>
+		<h3>Important!</h3>
+		<p>The included example doesn't use any user-submitted data escaping, since I did't want my example to 
+		interfere with the data cleansing you might be doing. This filter does not protect you against XSS or 
+		SQL injection attacks, and never will, as that it not its purpose. Read up on PDO, 
+		<code>mysql_real_escape_string()</code>, the <a href="http://www.php.net/manual/en/filter.filters.sanitize.php">built-in 
+		PHP sanitizing filters</a>, and <a href="https://www.owasp.org/index.php/Data_Validation">OWASP's guidelines 
+		for data validation</a> for more on this. </p>
 
-		<p>Now you can use <code>$censored['clean']</code> to refer to the cleaned version, and <code>$censored['orig']</code> to the original string.</p>
 		
-		<p>NOTE: If you don't use convert special characters to their HTML counterparts (for example, using <code>htmlentities()</code> 
-		as in the example above), it will not match against special characters that are 
-		sent through. </p>
-		
-		<p>For example, if a user submits <code>&quot;&cent;unt&quot;</code>, it will not be detected as a matching bad word if you 
-		do not convert your string to special characters. The script is looking for <code>&amp;cent;</code>, NOT the literal <code>&cent;</code> symbol. 
-		Just convert your string to HTML entities and you'll be fine. </p>
-		
-		<p>Also, this example doesn't use any user-submitted data escaping, since I did't want my example to 
-		interfere with the data cleansing you might be doing. <strong>You must absolutely never send 
-		unvalidated data through to your server or back out to the browser. NO exceptions.</strong></p>
-		
-		<h3>Important Note: No profanity filter is flawless </h3>
+		<h3>The Profanity Filter Conundrum</h3>
 		<p>No banned-word list is going to be 
 		flawless. A G-rated list will block out the word "screw", but there are certainly 
-		legitimate uses for the word "screw". Also, the word "dick" might be banned, but many 
-		men named Richard are called "Dick" as their nickname. You may need to edit your 
-		list to suit your needs, removing some words from the banned-word list that you 
-		feel are too restrictive.</p>
-		
-		
-		<h3>What This Script Does</h3>
-		<p>The script will take a 
-		word or phrase and replace the words you put in the <code>$badwords</code> array and replace it with asterisks. 
-		One asterisk for each letter of the word that's being replaced. 
-		So <code>shit</code> turns into <code>****</code>, <code>shitty</code> turns into <code>****ty</code>, 
-		etc. This script will honor the original case of the word being cleaned, and it is <strong>case-insensitive</strong>, 
-		so it will not be tricked by MiXeD CaSE words.</p>
-		
-		<p>It will also look for common leetspeak-style substitutions, for example using foreign 
-		characters or combinations of numbers and symbols to create text that looks the same - 
-		like using pipe-parenthasis to create a <code>D</code>, as <code>|)</code>. </p>
-		
-		<p>I haven't finished all of those filters yet, 
-		but I have a good start so far.  If you wish to twiddle those to add or remove, they can be found in the 
-		<code>censor.function.php</code> file in the master branch, in the <code>$leet_replace array</code>.</p>
-	
-		
-		<h3>What This Script Doesn't Do</h3>
-		<p>Profanity filtering is actually pretty difficult, 
-		if you want to do it REALLY right, since context is everything. 
-		The word &quot;Dick&quot; can be a crude reference to male genitalia, or to the 
-		nickname of a fellow named Richard. Context is the only way to tell the difference. 
-		This database and PHP script isn't going to be able to determine context. </p>
+		legitimate uses for the word "screw". </p>
+
+		<p>The word &quot;Dick&quot; can be a crude reference to male genitalia, or to the 
+		nickname of a fellow named Richard. Context is the only way to tell the difference, and it's 
+		been argued that one cannot censor a language without actually comprehending it, 
+		since context is so critical. </p>
 		
 		<p>If you put &quot;ass&quot; in your bad word array, legitimate words like 
 		&quot;class&quot; will be turned into &quot;cl***&quot;, so choose your words wisely. This, 
@@ -107,8 +88,9 @@ $censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 		this one. It is possible to create a whitelist of words on top of your blacklist, to specify 
 		legitimate words that might have an exactly matching swear word within it (like "assign", "classy", etc), 
 		but the creation and maintenance of that list would impractical, and running every string 
-		through it would increase processing time considerably. </p>
+		through it could increase processing time considerably. </p>
 		
+		<h4>I want to stick my long-necked Giraffe up your fluffy white bunny</h4>
 		<p><strong>In general, profanity filters just don't work.</strong> At least not the way we want them to. </p>
 		<blockquote>"Obscenity filtering is an enduring, maybe even timeless problem. 
 		I'm doubtful it will ever be possible to solve this particular problem through 
@@ -116,31 +98,22 @@ $censored = censorString(htmlentities(trim($YOURSTRING)), $badwords);
 		that windmill. Which means you might want to think twice 
 		before you move to Scunthorpe.<br> - 
 		<a href="http://www.codinghorror.com/blog/2008/10/obscenity-filters-bad-idea-or-incredibly-intercoursing-bad-idea.html">Jeff Atwood</a> </blockquote>
+		
+		<p>And let's not forget that there are LOTS of ways to say horribly offensive, 
+		degrading and disrespectful things without ever using a single profane word. Check out 
+		this <a href="http://habitatchronicles.com/2007/03/the-untold-history-of-toontowns-speedchat-or-blockchattm-from-disney-finally-arrives/">fantastic 
+		article on Habitat Chronicles</a> for more.</p>
+		
+		<p>But of course, there are times when we need to give a good best-effort. </p>
 
 		<p>And although this script makes a good effort at trying to block most attempts to get around filters by 
 		using special characters, adding dots or dashes in between letters, etc - someone who is 
-		really determined will find a way around whatever profanity filter you use. You should possibly consider 
+		really determined <i>will</i> find a way around whatever profanity filter you use. You should possibly consider 
 		including a flag or report function into your application so that you can take punitive action against 
 		people who are consistently trying to break the rules.
 		</p>
 		
-			
-		<h3>About This Project</h3>		
-		<p>In the repo, over 800 naughty words are available in the following formats: </p>
-		
-		<ul>
-			<li>SQL</li>
-			<li>PHP Array</li>
-			<li>CSV</li>
-			<li>LaTex</li>
-			<li>YML</li>
-			<li>XML</li>
-		</ul>
-
-		<p>These databases were created with the assumption that you would not have access to regex. 
-		If you do have the ability to use regex, I strongly recommend using the method described above, 
-		as it's much more thorough and easier to maintain.
-
+	
 
       </section>
     </div>
