@@ -17,7 +17,7 @@ You end up with an array called <code>$censored</code>. You can access the origi
 
 There is an optional parameter that you can pass to use a different replacement character. For example:
 
-     $censored = censorString($input, $badwords,'X');  
+     <code>$censored = censorString($input, $badwords,'X');</code>  
 
 Will replace "bitch" to "XXXXX" instead of the default "*****".
 
