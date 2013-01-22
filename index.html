@@ -64,13 +64,13 @@
 		the repo to get started. It's as simple as including two files and invoking a function. </p>
 		
 <pre><code>include('wordlist-regex.php');
-     include('censor.function.php');
-     $censored = censorString($input, $badwords);</code></pre>	  
+include('censor.function.php');
+$censored = censorString($input, $badwords);</code></pre>	  
 		
 		<h3>Important!</h3>
-		<p>The included example doesn't use any user-submitted data escaping, since I did't want my example to 
-		interfere with the data cleansing you might be doing. This filter does not protect you against XSS or 
-		SQL injection attacks, and never will, as that it not its purpose. Read up on PDO, 
+		<p>This filter does not protect you against XSS or 
+		SQL injection attacks, and never will, as that it not its purpose, and attempting to do so 
+		could cause unpredictable results depending on how/where it's implemented. Read up on PDO, 
 		<code>mysql_real_escape_string()</code>, the <a href="http://www.php.net/manual/en/filter.filters.sanitize.php">built-in 
 		PHP sanitizing filters</a>, and <a href="https://www.owasp.org/index.php/Data_Validation">OWASP's guidelines 
 		for data validation</a> for more on this. </p>
