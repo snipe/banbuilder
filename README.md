@@ -17,7 +17,7 @@ You end up with an array called <code>$censored</code>. You can access the origi
 
 There is an optional parameter that you can pass to use a different replacement character. For example:
 
-     <code>$censored = censorString($input, $badwords,'X');</code>  
+     $censored = censorString($input, $badwords,'X'); 
 
 Will replace "bitch" to "XXXXX" instead of the default "*****".
 
@@ -48,7 +48,9 @@ This means that the following all evaluate to the "bitch":
 
 Legacy Database
 ---------------
-Theses file offer over 800 words ready to use in banned words lists for projects. Current file types are:
+When this project was first started, it was used to compile a database of swear words in every permutation for scenarios where regex wasn't possible for whatever reason). While the regex method is much better, the legacy full (non-regexy) databases contain over 800 words ready to use in banned words lists for projects. 
+
+Current file types are:
 
 - SQL
 - CSV
