@@ -63,6 +63,10 @@
 		<p>Check out the <a href="https://github.com/snipe/banbuilder/blob/master/README.md">README</a> in 
 		the repo to get started. It's as simple as including two files and invoking a function. </p>
 		
+     include('wordlist-regex.php');
+     include('censor.function.php');
+     $censored = censorString($input, $badwords); 
+		
 		<h3>Important!</h3>
 		<p>The included example doesn't use any user-submitted data escaping, since I did't want my example to 
 		interfere with the data cleansing you might be doing. This filter does not protect you against XSS or 
