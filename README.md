@@ -27,12 +27,11 @@ In a nutshell, this code takes your array of bad words and compares it to an arr
 
 So in your bad words array, you might have:
 
-<pre>[0] => 'ass'
-...</pre>
+     [0] => 'ass'
 
 The preg_replace functions replace all of the possible shenaningan letters with regex patterns (in lieu of adding the variants onto the end of the array), so the 'ass' in your array gets turned into this, right before the preg_replace checks for matches:
 
-    [0] => /(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α)(b|b\.|b\-|8|\|3|ß|Β|β)(o|o\.|o\-|0|Ο|ο|Φ)(r|r\.|r\-|®)(t|t\.|t\-)(i|i\.|i\-|!|\||\]\[|]|1)(o|o\.|o\-|0|Ο|ο|Φ)(n|n\.|n\-)/i
+     [0] => /(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α)(s|s\.|s\-|5|\$|§)(s|s\.|s\-|5|\$|§)/i
 
 This means that a word can have none, one or any variety of leet replacements and it will still trip the trigger. Part of the leet filter includes stripping out letter-dash and letter-dots. 
 
@@ -48,7 +47,7 @@ This means that the following all evaluate to the "bitch":
 
 Legacy Database
 ---------------
-When this project was first started, it was used to compile a database of swear words in every permutation for scenarios where regex wasn't possible for whatever reason). While the regex method is much better, the legacy full (non-regexy) databases contain over 800 words ready to use in banned words lists for projects. 
+When this project was first started, it was used to compile a database of swear words in every permutation for scenarios where regex wasn't possible for whatever reason). While the regex method is much better, the legacy full (non-regexy) databases contain over 800 words ready to use in banned words lists for projects. You can find those badword lists in the word-dbs directory [in the repo](https://github.com/snipe/banbuilder/tree/master/word-dbs). These databases are extra and are not required for the PHP function to run.
 
 Current file types are:
 
