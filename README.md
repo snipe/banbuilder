@@ -15,11 +15,17 @@ Simply require the database file and the function file, and invoke the function:
 
 You end up with an array called <code>$censored</code>. You can access the original, uncensored string as <code>$censored['orig']</code> and the newly censored string as <code>$censored['clean']</code>.
 
-There is an optional parameter that you can pass to use a different replacement character. For example:
+There is an optional string parameter that you can pass to use a different replacement character. For example:
 
      $censored = censorString($input, $badwords,'X'); 
 
 Will replace "bitch" to "XXXXX" instead of the default "*****".
+
+If the optional parameter is more than 1 character long, a bad words will be replaced by random strings which are composed by characters taken from the string. For example:
+
+     $censored = censorString($input, $badwords,'X!°#%$@');
+
+Could replace "bitch" to something like "%#@#@" or "%@!X#".
 
 Summary
 -------

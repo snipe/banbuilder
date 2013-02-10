@@ -1,9 +1,36 @@
 <?php
 /**
+ *  Generates a random string.
+ *  @param        string          $chars        Chars that can be used.
+ *  @param        int             $len          Length of the output string.
+ *  string
+ */
+function randCensor($chars, $len) {
+	
+	mt_srand(); // useful for < PHP4.2
+	$lastChar = strlen($chars) - 1;
+	$randOld = -1;
+	$out = '';
+	
+	// create $len chars
+	for ($i = $len; $i > 0; $i--) {
+		// generate random char - it must be different from previously generated
+		while (($randNew = mt_rand(0, $lastChar)) === $randOld) { }
+		$randOld = $randNew;
+		$out .= $chars[$randNew];
+	}
+	
+	return $out;
+	
+}
+
+
+/**
  *  Apply censorship to $string, replacing $badwords with $censorChar.
  *  @param        string          $string        String to be censored.
  *  @param        string[int]     $badwords      Array of badwords.
- *  @param        string          $censorChar    1-char string which replaces bad words. Default: '*'
+ *  @param        string          $censorChar    String which replaces bad words. If it's more than 1-char long,
+ *                                               a random string will be generated from these chars. Default: '*'
  *  string[string]
  */
 function censorString($string, $badwords, $censorChar = '*') {  
@@ -37,10 +64,16 @@ function censorString($string, $badwords, $censorChar = '*') {
 		$leet_replace['z']= '(z|z\.|z\-|Ζ)';
      
         $words = explode(" ", $string);
-                
+        
+		// is $censorChar a single char?
+        $isOneChar = (strlen($censorChar) === 1);
+		
         for ($x=0; $x<count($badwords); $x++) {
 
-        	$replacement[$x] = str_repeat($censorChar,strlen($badwords[$x]));
+        	$replacement[$x] = $isOneChar
+                ? str_repeat($censorChar,strlen($badwords[$x]))
+                : randCensor($censorChar,strlen($badwords[$x]));
+			
         	$badwords[$x] =  '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
         }
         
