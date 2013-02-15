@@ -1,3 +1,5 @@
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=snipe&url=https://github.com/snipe/banbuilder&title=banbuilder&language=PHP&tags=github&category=software)
+
 Banbuilder
 ==========
 
