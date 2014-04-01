@@ -3,23 +3,25 @@
 Banbuilder
 ==========
 
-Banbuilder is a PHP function and bad word database for profanity filtering. The PHP script uses regex to intelligently look for "leetspeak"-style numeric or symbol replacements. 
+Banbuilder is a PHP function and bad word database for profanity filtering. The PHP script uses regex to intelligently look for "leetspeak"-style numeric or symbol replacements.
 
-The database of profanity is located in the wordlist-regex.php file, and is a simple PHP array. 
+The database of profanity is located in the `en.wordlist-regex.php` file, and is a simple PHP array.
+
+**We are actively looking for translation files!**
 
 Usage
 ------
 Simply require the database file and the function file, and invoke the function:
 
-     include('wordlist-regex.php');
+     include('en.wordlist-regex.php');
      include('censor.function.php');
-     $censored = censorString($input, $badwords); 
+     $censored = censorString($input, $badwords);
 
-You end up with an array called <code>$censored</code>. You can access the original, uncensored string as <code>$censored['orig']</code> and the newly censored string as <code>$censored['clean']</code>.
+You end up with an array called `$censored`. You can access the original, uncensored string as `$censored['orig']` and the newly censored string as `$censored['clean']`.
 
 There is an optional string parameter that you can pass to use a different replacement character. For example:
 
-     $censored = censorString($input, $badwords,'X'); 
+     $censored = censorString($input, $badwords,'X');
 
 Will replace "bitch" to "XXXXX" instead of the default "*****".
 
@@ -37,11 +39,11 @@ So in your bad words array, you might have:
 
      [0] => 'ass'
 
-The preg_replace functions replace all of the possible shenaningan letters with regex patterns (in lieu of adding the variants onto the end of the array), so the 'ass' in your array gets turned into this, right before the preg_replace checks for matches:
+The `preg_replace` functions replace all of the possible shenaningan letters with regex patterns (in lieu of adding the variants onto the end of the array), so the 'ass' in your array gets turned into this, right before the `preg_replace` checks for matches:
 
      [0] => /(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α)(s|s\.|s\-|5|\$|§)(s|s\.|s\-|5|\$|§)/i
 
-This means that a word can have none, one or any variety of leet replacements and it will still trip the trigger. Part of the leet filter includes stripping out letter-dash and letter-dots. 
+This means that a word can have none, one or any variety of leet replacements and it will still trip the trigger. Part of the leet filter includes stripping out letter-dash and letter-dots.
 
 This means that the following all evaluate to the "bitch":
 
