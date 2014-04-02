@@ -11,6 +11,7 @@ The databasea of profanity are located in the `*.wordlist-regex.php` files, and 
 * British English
 * Spain Spanish
 * France French
+* Korean (South)
 * Netherlands Dutch
 
 **We are actively looking for translation files!**
