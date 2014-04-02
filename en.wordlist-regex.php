@@ -1,9 +1,9 @@
 <?php
 /**
- * PHP Array 
+ * PHP Array for English words
  */
 
-$badwords = array(
+array_push($badwords,
 		'abortion',
 		'anal',
 		'anus',
@@ -78,5 +78,5 @@ $badwords = array(
 		'vagina',
 		'vulva',
 		'wank',
-		'whore',
+		'whore'
 );
