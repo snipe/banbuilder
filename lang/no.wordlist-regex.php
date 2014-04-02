@@ -77,8 +77,8 @@ array_push($badwords,
 		'pung',
 		'pupp',
 		'pæss',
-    'rapa',
-    'rape'
+		'pæss',
+		'rape'
 		'rass',
 		'rasshøl',
 		'rasshøl',
