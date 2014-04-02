@@ -1,6 +1,6 @@
 <?php
 /**
- * PHP Array for English words
+ * PHP Array for English (UK) words
  */
 
 array_push($badwords,
