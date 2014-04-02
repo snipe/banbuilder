@@ -76,7 +76,9 @@ This means that the following all evaluate to the "bitch":
 
 Legacy Database
 ---------------
-When this project was first started, it was used to compile a database of swear words in every permutation for scenarios where regex wasn't possible for whatever reason). While the regex method is much better, the legacy full (non-regexy) databases contain over 800 words ready to use in banned words lists for projects. You can find those badword lists in the word-dbs directory [in the repo](https://github.com/snipe/banbuilder/tree/master/word-dbs). These databases are extra and are not required for the PHP function to run.
+When this project was first started, it was used to compile a database of swear words in every permutation for scenarios where regex wasn't possible for whatever reason). While the regex method is much better, the legacy full (non-regexy) databases contain over 800 words ready to use in banned words lists for projects. You can find those badword lists in the word-dbs directory [in the repo](https://github.com/snipe/banbuilder/tree/master/deprecated-word-dbs).
+
+**These files are extra and are not required for the PHP function to run.**
 
 Current file types are:
 
