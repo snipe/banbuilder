@@ -13,9 +13,9 @@
 */
 
 $badwords = array();
-include('en-us.wordlist-regex.php');
-include('fr.wordlist-regex.php');
-include('es.wordlist-regex.php');
+include('lang/en-us.wordlist-regex.php');
+include('lang/fr.wordlist-regex.php');
+include('lang/es.wordlist-regex.php');
 include('censor.function.php');
 
 // cli or www?
