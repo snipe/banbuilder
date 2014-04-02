@@ -8,6 +8,7 @@ Banbuilder is a PHP function and bad word database for profanity filtering. The 
 The databasea of profanity are located in the `*.wordlist-regex.php` files, and is a simple PHP array. So far we have translations for:
 
 * US English
+* British English
 * Spain Spanish
 * France French
 * Netherlands Dutch
