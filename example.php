@@ -12,7 +12,9 @@
 * PROCESSED:     snipe is a *****, but she knows her ****. NO BULL****.
 */
 
+$badwords = array();
 include('en.wordlist-regex.php');
+include('fr.wordlist-regex.php');
 include('censor.function.php');
 
 // cli or www?
@@ -28,7 +30,3 @@ if (isset($argv)) {
 
 $censored = censorString($input, $badwords);
 echo "\nPURE: ".$input."\nORIGINAL:      ".$censored['orig']."\nPROCESSED:     ".$censored['clean']."\n\n";
-
-
-
-
