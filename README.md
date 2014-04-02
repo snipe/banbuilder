@@ -13,9 +13,21 @@ Usage
 ------
 Simply require the database file and the function file, and invoke the function:
 
+     $badwords = array();
      include('en.wordlist-regex.php');
      include('censor.function.php');
      $censored = censorString($input, $badwords);
+
+To use multiple language dictionaries, just include them.
+
+     $badwords = array();
+     include('en.wordlist-regex.php');
+     include('fr.wordlist-regex.php');
+     include('es.wordlist-regex.php');
+     include('censor.function.php');
+     $censored = censorString($input, $badwords);
+
+** Make sure you set the `$badwords = array();` before including the dictionaries.**
 
 You end up with an array called `$censored`. You can access the original, uncensored string as `$censored['orig']` and the newly censored string as `$censored['clean']`.
 
