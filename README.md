@@ -27,7 +27,7 @@ To use multiple language dictionaries, just include them.
      include('censor.function.php');
      $censored = censorString($input, $badwords);
 
-** Make sure you set the `$badwords = array();` before including the dictionaries.**
+**Make sure you set the `$badwords = array();` before including the dictionaries.**
 
 You end up with an array called `$censored`. You can access the original, uncensored string as `$censored['orig']` and the newly censored string as `$censored['clean']`.
 
