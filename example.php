@@ -13,7 +13,7 @@
 */
 
 $badwords = array();
-include('en.wordlist-regex.php');
+include('en-us.wordlist-regex.php');
 include('fr.wordlist-regex.php');
 include('es.wordlist-regex.php');
 include('censor.function.php');

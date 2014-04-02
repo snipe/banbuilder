@@ -5,7 +5,12 @@ Banbuilder
 
 Banbuilder is a PHP function and bad word database for profanity filtering. The PHP script uses regex to intelligently look for "leetspeak"-style numeric or symbol replacements.
 
-The database of profanity is located in the `en.wordlist-regex.php` file, and is a simple PHP array.
+The databasea of profanity are located in the `*.wordlist-regex.php` files, and is a simple PHP array. So far we have translations for:
+
+* US English
+* Spain Spanish
+* France French
+* Netherlands Dutch
 
 **We are actively looking for translation files!**
 
@@ -14,14 +19,14 @@ Usage
 Simply require the database file and the function file, and invoke the function:
 
      $badwords = array();
-     include('en.wordlist-regex.php');
+     include('en-us.wordlist-regex.php');
      include('censor.function.php');
      $censored = censorString($input, $badwords);
 
 To use multiple language dictionaries, just include them.
 
      $badwords = array();
-     include('en.wordlist-regex.php');
+     include('en-us.wordlist-regex.php');
      include('fr.wordlist-regex.php');
      include('es.wordlist-regex.php');
      include('censor.function.php');
