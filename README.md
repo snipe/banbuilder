@@ -13,6 +13,7 @@ The databases of profanity are located in the `lang/*.wordlist-regex.php` files,
 * France French
 * Korean (South)
 * Netherlands Dutch
+* Norwegian (Bokmål & various dialects)
 
 **We are actively looking for translation files!**
 
