@@ -1,4 +1,6 @@
 <?php
+include(__DIR__ . DIRECTORY_SEPARATOR . 'en.wordlist-regex.php');
+
 /**
  * PHP Array for English words
  */
