@@ -75,18 +75,18 @@
 		the repo to get started. It's as simple as including two files and invoking a function. </p>
 
 		<pre><code>$badwords = array();
-		 include('en-us.wordlist-regex.php');
-		 include('censor.function.php');
-		 $censored = censorString($input, $badwords);</code></pre>
+include('en-us.wordlist-regex.php');
+include('censor.function.php');
+$censored = censorString($input, $badwords);</code></pre>
 
 		 <p>To use multiple language dictionaries, just include them.</p>
 
 		 <pre><code>$badwords = array();
-		 include('en-us.wordlist-regex.php');
-		 include('fr.wordlist-regex.php');
-		 include('es.wordlist-regex.php');
-		 include('censor.function.php');
-		 $censored = censorString($input, $badwords);</code></pre>
+include('en-us.wordlist-regex.php');
+include('fr.wordlist-regex.php');
+include('es.wordlist-regex.php');
+include('censor.function.php');
+$censored = censorString($input, $badwords);</code></pre>
 
 		<h3>Important!</h3>
 		<p>This filter does not protect you against XSS or
