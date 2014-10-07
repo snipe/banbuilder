@@ -13,11 +13,11 @@ array_push($badwords,
 		'drittsekk',
 		'dust',
 		'faen',
-		'fæn'
+		'fæn',
 		'fanden',
 		'helvete',
 		'helvette',
-		'hora'
+		'hora',
 		'hore',
 		'jævel',
 		'jævla',
@@ -31,7 +31,7 @@ array_push($badwords,
 		'quisling',
 		'satan',
 		'sattan',
-		'søren',
+		'søren'
 );
 
 // Bodily parts and actions
@@ -78,7 +78,7 @@ array_push($badwords,
 		'pupp',
 		'pæss',
 		'pæss',
-		'rape'
+		'rape',
 		'rass',
 		'rasshøl',
 		'rasshøl',
@@ -98,7 +98,7 @@ array_push($badwords,
 		'utpult',
 		'vagina',
 		'voldta',
-		'voldtekt',
+		'voldtekt'
 );
 
 // Various insults based on bodily parts
@@ -124,7 +124,7 @@ array_push($badwords,
 		'neger',
 		'nigger',
 		'pakkis',
-		'svarting',
+		'svarting'
 );
 
 // LGBT slurs
@@ -136,5 +136,5 @@ array_push($badwords,
 		'pøke',
 		'skinkerytter',
 		'soper',
-		'teppetygger',
+		'teppetygger'
 );
