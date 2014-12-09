@@ -38,7 +38,7 @@ array_push($badwords,
 		'びっこ',     	// Cripple
 		'ひにん',     	// Contraception / Non-human (insult to Burakumin)
 		'ふぇら',     	// Fellatio
-		'ぶらく'			// Buraku
+		'ぶらく',			// Buraku
 		'ぺにす',     	// Penis
 		'まんこ',     	// Vagina
 		'おまんこ',     	// Vagina
@@ -47,5 +47,5 @@ array_push($badwords,
 		'やりまん',    	// Slut
 		'りょうじょく', 	// Rape
 		'れいぷ',     	// Rape
-		'ろりこん',  	// Pedophile
+		'ろりこん'  	// Pedophile
 );
