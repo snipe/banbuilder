@@ -4,6 +4,13 @@ namespace Snipe\Banbuilder;
 
 class CensorWords
 {
+	
+	public function __construct() {	
+		$this->replacer = '*';
+		$this->setDictionary('en-us');
+	}
+	
+	
 	/**
 	 *  Sets the dictionar(y|ies) to use
 	 *  This can accept a string to a language file path, 
@@ -12,29 +19,40 @@ class CensorWords
 	 *  @param		string/array
 	 *  string
 	 */
-	public function setDictionary($dicts = 'en-us') {
+	public function setDictionary($dictionary) {
 		
 		$badwords = array();
+		$this->dictionary = $dictionary;
 		
-		if (is_array($dicts)) {
-			for ($x=0; $x < count($dicts); $x++) {
-				if (file_exists('dict/'.$dicts[$x].'.php')) {
-					include('dict/'.$dicts[$x].'.php');	
+		if (is_array($this->dictionary)) {
+			for ($x=0; $x < count($this->dictionary); $x++) {
+				if (file_exists('dict/'.$this->dictionary[$x].'.php')) {
+					include('dict/'.$this->dictionary[$x].'.php');	
 				} else {
 					// if the file isn't in the dict directory, 
 					// it's probably a custom user library
-					include($dicts[$x]);						
+					include($this->dictionary[$x]);						
 				}
 				
 			} 
 			
-		} elseif (is_string($dicts)) {
-			include('dict/'.$dicts.'.php');	
-						
+		} elseif (is_string($this->dictionary)) {
+			include('dict/'.$this->dictionary.'.php');	
 		}
 		
-		return $badwords;
+		$this->badwords = $badwords;
 			 
+	}
+	
+	
+	/**
+	 *  Sets the replacement character to use
+	 * 
+	 *  @param		string			$replacer        Character to use.
+	 *  string
+	 */
+	public function setReplaceChar($replacer) {
+		$this->replacer = $replacer;			 
 	}
 
 
@@ -67,13 +85,11 @@ class CensorWords
 	/**
 	 *  Apply censorship to $string, replacing $badwords with $censorChar.
 	 *  @param        string          $string        String to be censored.
-	 *  @param        string[int]     $badwords      Array of badwords.
-	 *  @param        string          $censorChar    String which replaces bad words. If it's more than 1-char long,
-	 *                                               a random string will be generated from these chars. Default: '*'
 	 *  string[string]
 	 */
-	public function censorString($string, $badwords, $censorChar = '*') {
-
+	public function censorString($string) {
+			$badwords = $this->badwords;
+			
 			$leet_replace = array();
 			$leet_replace['a']= '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
 			$leet_replace['b']= '(b|b\.|b\-|8|\|3|ß|Β|β)';
@@ -105,20 +121,20 @@ class CensorWords
 			$words = explode(" ", $string);
 
 			// is $censorChar a single char?
-			$isOneChar = (strlen($censorChar) === 1);
+			$isOneChar = (strlen($this->replacer) === 1);
 
 			for ($x=0; $x<count($badwords); $x++) {
 
 				$replacement[$x] = $isOneChar
-					? str_repeat($censorChar,strlen($badwords[$x]))
-					: randCensor($censorChar,strlen($badwords[$x]));
+					? str_repeat($this->replacer,strlen($badwords[$x]))
+					: $this->randCensor($this->replacer,strlen($badwords[$x]));
 
 				$badwords[$x] =  '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
 			}
 
 			$newstring = array();
 			$newstring['orig'] = html_entity_decode($string);
-			$newstring['clean'] =  preg_replace($badwords,$replacement, $newstring['orig']);
+			$newstring['clean'] =  preg_replace($badwords, $replacement, $newstring['orig']);
 
 			return $newstring;
 
