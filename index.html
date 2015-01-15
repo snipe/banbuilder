@@ -60,21 +60,7 @@
 			There are no additional dependencies required for this package to work.</p>
 
 		
-		<h3>Translations</h3>
-		<p>We're always working on more translations (and we'd love your help if you're fluent in a language we don't yet have.)
-		So far, we've got:
-		</p>
-
-		<ul>
-			<li>English (US)</li>
-			<li>English (UK)</li>
-			<li>Spanish (Spain)</li>
-			<li>Korean (South)</li>
-			<li>French (France)</li>
-			<li>Dutch (Netherlands)</li>
-			<li>Norwegian (Bokm&aring;l & various dialects)</li>
-		</ul>
-
+	
 		<h3>Usage</h3>
 		
 		<pre><code>use Snipe\BanBuilder\CensorWords;
@@ -86,7 +72,39 @@ $string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 		
 		<h3>Options</h3>
 		
-		<p>By default, this package uses an asterisk (<code>*</code>) as the replacement character, so that <code>shit</code> becomes <code>****</code>. You can change that by changing the last parameter in the method call: <code>$censor->censorString($yourstring,$badwords, '*')</code>. (Note that the symbol or letter you use must be one-character.)
+		<p>By default, this package uses an asterisk (<code>*</code>) as the 
+			replacement character, so that <code>shit</code> becomes <code>****</code>. 
+			You can change that by changing the last parameter in the method call: 
+			<code>$censor->censorString($yourstring,$badwords, '*')</code>. 
+			(Note that the symbol or letter you use must be one-character.)</p>
+			
+		<h4>Languages</h4>
+		<p>The available language libraries are in <code>src/dict</code>. We currently have: </p>
+		
+		<ul>
+			<li>English (US)</li>
+			<li>English (UK)</li>
+			<li>Spanish (Spain)</li>
+			<li>Korean (South)</li>
+			<li>French (France)</li>
+			<li>Dutch (Netherlands)</li>
+			<li>Norwegian (Bokm&aring;l & various dialects)</li>
+		</ul>
+		
+		<p>To choose a non-English language file (or several dictionaries at once), pass the semantic filename without the <code>.php</code> into the <code>setDictionary</code> method call as a parameter. For example, to use the French dictionary of profanity, you would use: </p>
+		
+<pre><code>use Snipe\BanBuilder\CensorWords;
+$censor = new CensorWords;
+$badwords = $censor->setDictionary('fr');
+$string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
+		
+		<p>To use multiple language dictionaries in once instance, pass the languages as an array:</p>
+		
+		<pre><code>use Snipe\BanBuilder\CensorWords;
+$censor = new CensorWords;
+$langs = array('fr','it');
+$badwords = $censor->setDictionary($langs);
+$string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 		
 		
 		<h3>Important!</h3>
