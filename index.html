@@ -29,7 +29,11 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 	      
-	      <p><a href="https://gitter.im/snipe/banbuilder?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://camo.githubusercontent.com/da2edb525cde1455a622c58c0effc3a90b9a181c/68747470733a2f2f6261646765732e6769747465722e696d2f4a6f696e253230436861742e737667" alt="Gitter" data-canonical-src="https://badges.gitter.im/Join%20Chat.svg" style="max-width:130px;"></a> <a href="https://travis-ci.org/snipe/banbuilder"><img src="https://camo.githubusercontent.com/2c72c50bd3ffef75a83f08c1a5437b6c79d37976/68747470733a2f2f7472617669732d63692e6f72672f736e6970652f62616e6275696c6465722e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/snipe/banbuilder.svg?branch=master" style="max-width:75px;"></a> <a href="https://packagist.org/packages/snipe/banbuilder"><img src="https://camo.githubusercontent.com/5ca89f0b35cc2e8b5efdea416aee0e3b30f6fdea/68747470733a2f2f706f7365722e707567782e6f72672f736e6970652f62616e6275696c6465722f762f737461626c652e737667" alt="Latest Stable Version" data-canonical-src="https://poser.pugx.org/snipe/banbuilder/v/stable.svg" style="max-width:110px"></a> <a href="https://packagist.org/packages/snipe/banbuilder"><img src="https://camo.githubusercontent.com/b5281dee54a77f46fb644fa808d67cd4c4158a27/68747470733a2f2f706f7365722e707567782e6f72672f736e6970652f62616e6275696c6465722f646f776e6c6f6164732e737667" alt="Total Downloads" data-canonical-src="https://poser.pugx.org/snipe/banbuilder/downloads.svg" style="max-width:90px;"></a>  <a href="https://packagist.org/packages/snipe/banbuilder"><img src="https://camo.githubusercontent.com/3c3506fb8777ae326f912f1610bc461f623b30d3/68747470733a2f2f706f7365722e707567782e6f72672f736e6970652f62616e6275696c6465722f6c6963656e73652e737667" alt="License" data-canonical-src="https://poser.pugx.org/snipe/banbuilder/license.svg" style="max-width:100px;"></a></p>
+	      <p><a href="https://gitter.im/snipe/banbuilder?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://camo.githubusercontent.com/da2edb525cde1455a622c58c0effc3a90b9a181c/68747470733a2f2f6261646765732e6769747465722e696d2f4a6f696e253230436861742e737667" alt="Gitter" data-canonical-src="https://badges.gitter.im/Join%20Chat.svg" style="max-width:130px;"></a> 
+	      <a href="https://travis-ci.org/snipe/banbuilder"><img src="https://camo.githubusercontent.com/2c72c50bd3ffef75a83f08c1a5437b6c79d37976/68747470733a2f2f7472617669732d63692e6f72672f736e6970652f62616e6275696c6465722e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/snipe/banbuilder.svg?branch=master" style="max-width:75px;"></a> 
+	      <a href="https://packagist.org/packages/snipe/banbuilder"><img src="https://camo.githubusercontent.com/5ca89f0b35cc2e8b5efdea416aee0e3b30f6fdea/68747470733a2f2f706f7365722e707567782e6f72672f736e6970652f62616e6275696c6465722f762f737461626c652e737667" alt="Latest Stable Version" data-canonical-src="https://poser.pugx.org/snipe/banbuilder/v/stable.svg" style="max-width:80px"></a> 
+	      <a href="https://packagist.org/packages/snipe/banbuilder"><img src="https://camo.githubusercontent.com/b5281dee54a77f46fb644fa808d67cd4c4158a27/68747470733a2f2f706f7365722e707567782e6f72672f736e6970652f62616e6275696c6465722f646f776e6c6f6164732e737667" alt="Total Downloads" data-canonical-src="https://poser.pugx.org/snipe/banbuilder/downloads.svg" style="max-width:90px;"></a>  
+	      <a href="https://packagist.org/packages/snipe/banbuilder"><img src="https://camo.githubusercontent.com/3c3506fb8777ae326f912f1610bc461f623b30d3/68747470733a2f2f706f7365722e707567782e6f72672f736e6970652f62616e6275696c6465722f6c6963656e73652e737667" alt="License" data-canonical-src="https://poser.pugx.org/snipe/banbuilder/license.svg" style="max-width:100px;"></a></p>
         <h3>BOO Censorship!</h3>
 		<p>I hate censorship as much as anyone, but as a web application developer,
 		there are times when a banned-word list is necessary, especially if the
@@ -37,7 +41,9 @@
 
 		<h3>What This Script Does</h3>
 		<p>The script will take a
-		word or phrase and replace the words you put in the <code>$badwords</code> array and replace it with asterisks. </p>
+		word or phrase and replace the words from a predefined list of forbidden words and replace it with asterisks (or whatever other character you might fancy.) </p>
+		
+		<h3>Features</h3>
 
 		<ul>
 			<li>Case insensitive</li>
@@ -65,8 +71,7 @@
 		
 		<pre><code>use Snipe\BanBuilder\CensorWords;
 $censor = new CensorWords;
-$badwords = $censor->setDictionary();
-$string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
+$string = $censor->censorString($yourstring);</code></pre>
 
 	<p>This returns <code>$string</code> as an array, where you can access <code>$string['clean']</code> for the cleaned version of the <code>$yourstring</code>, or <code>$string['orig']</code>, which will give you the original <code>$yourstring</code>.
 		
@@ -74,9 +79,15 @@ $string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 		
 		<p>By default, this package uses an asterisk (<code>*</code>) as the 
 			replacement character, so that <code>shit</code> becomes <code>****</code>. 
-			You can change that by changing the last parameter in the method call: 
-			<code>$censor->censorString($yourstring,$badwords, '*')</code>. 
+			You can change that by using the 
+			<code>setReplaceChar</code> method. 
 			(Note that the symbol or letter you use must be one-character.)</p>
+			
+			<pre><code>use Snipe\BanBuilder\CensorWords;
+$censor = new CensorWords;
+$censor->setReplaceChar("X");
+$string = $censor->censorString($yourstring);</code></pre>
+
 			
 		<h4>Languages</h4>
 		<p>The available language libraries are in <code>src/dict</code>. We currently have: </p>
@@ -91,12 +102,14 @@ $string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 			<li>Norwegian (Bokm&aring;l & various dialects)</li>
 		</ul>
 		
-		<p>To choose a non-English language file (or several dictionaries at once), pass the semantic filename without the <code>.php</code> into the <code>setDictionary</code> method call as a parameter. For example, to use the French dictionary of profanity, you would use: </p>
+		<p>To choose a non-English language file (or several dictionaries at once), 
+			pass the semantic filename without the <code>.php</code> into the <code>setDictionary</code> 
+			method call as a parameter. For example, to use the French dictionary of profanity, you would use: </p>
 		
 <pre><code>use Snipe\BanBuilder\CensorWords;
 $censor = new CensorWords;
 $badwords = $censor->setDictionary('fr');
-$string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
+$string = $censor->censorString($yourstring);</code></pre>
 		
 		<p>To use multiple language dictionaries in once instance, pass the languages as an array:</p>
 		
@@ -104,7 +117,7 @@ $string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 $censor = new CensorWords;
 $langs = array('fr','it');
 $badwords = $censor->setDictionary($langs);
-$string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
+$string = $censor->censorString($yourstring);</code></pre>
 
 <h4>Creating and Using Your Own Dictionaries</h4>
 
@@ -121,7 +134,7 @@ $string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 	<pre><code>use Snipe\BanBuilder\CensorWords;
 $censor = new CensorWords;
 $badwords = $censor->setDictionary('/path/to/my/dictionary.php');
-$string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
+$string = $censor->censorString($yourstring);</code></pre>
 
 
 		
