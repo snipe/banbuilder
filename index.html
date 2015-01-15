@@ -114,14 +114,13 @@ $string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 'word2',
 );</code></pre>
 
-<p>Note: You should NOT put your custom dictionary files within the BanBuilder <code>dict</code> directory. Composer vendor files are typically not checked into source code, so your changes to your custom file will be ignored if you put them there. You can put them anywhere outside of the vendors directory.</p>
+<p><strong>Note</strong>: You should NOT put your custom dictionary files within the BanBuilder <code>dict</code> directory. Composer vendor files are typically not checked into a project's source code, so your changes to your custom file will be ignored if you put them there. You can put them anywhere outside of the vendors directory.</p>
 
 <p>To use your own version of a language dictionary, pass the path and filename in its entirety:</p>
 	
 	<pre><code>use Snipe\BanBuilder\CensorWords;
 $censor = new CensorWords;
-$langs = array('/path/to/my/dictionary.php');
-$badwords = $censor->setDictionary($langs);
+$badwords = $censor->setDictionary('/path/to/my/dictionary.php');
 $string = $censor->censorString($yourstring,$badwords, '*');</code></pre>
 
 
