@@ -1,9 +1,8 @@
 <?php
 /**
- * PHP Array for Janapese words
+ * PHP Array for Korean words
  * Original word list from http://bulbapedia.bulbagarden.net/wiki/List_of_censored_words_in_Generation_V
  */
-
 array_push($badwords,
 		'강간',     		// Rape
 		'개새끼',     	// Son of a bitch

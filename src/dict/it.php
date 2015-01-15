@@ -2,7 +2,6 @@
 /**
  * PHP Array for Italian words
  */
-
 // https://github.com/shutterstock/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/blob/master/it
 array_push($badwords,
 	"allupato",
@@ -186,7 +185,6 @@ array_push($badwords,
 	"zio cantante",
 	"zoccola"
 );
-
 // http://bulbapedia.bulbagarden.net/wiki/List_of_censored_words_in_Generation_V
 array_push($badwords,
 	"affanculo",
@@ -226,5 +224,3 @@ array_push($badwords,
 	"vaffanculo",
 	"zoccola"
 );
-
-?>

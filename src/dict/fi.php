@@ -1,15 +1,13 @@
 <?php
-
+// Submitted via @rtxanson 
 // To add new swearwords, make sure to include some additional
 // wordforms.
 //
 // Existing words could always have more forms, but I was too lazy to
 // generate all of them, so this is a start; in no particular
 // order...
-
 array_push($badwords,
 		'jumalauta',     // goddamnit, interjection
-
 		'helvetit',      // hell, pl. nominative
 		'helvetiltä',    // hell, sg. ablative
 		'helvetillä',    // hell, sg. adessive
@@ -29,7 +27,6 @@ array_push($badwords,
 		'helveteissä',   // hell, pl. inessive
 		'helvetit',      // hell, pl. nominative
 		'helvettejä',    // hell, pl. partitive
-
 		'hinttarit',     // faggot, pl. nominative
 		'hinttarilta',   // faggot, sg. ablative
 		'hinttarilla',   // faggot, sg. adessive
@@ -52,7 +49,6 @@ array_push($badwords,
 		'hinttarit',     // faggot, pl. nominative
 		'hinttareita',   // faggot, pl. partitive
 		'hinttareja',    // faggot, pl. partitive
-
 		'hintit',        // fag, pl. nominative
 		'hintiltä',      // fag, sg. ablative
 		'hintillä',      // fag, sg. adessive
@@ -72,7 +68,6 @@ array_push($badwords,
 		'hinteissä',     // fag, pl. inessive
 		'hintit',        // fag, pl. nominative
 		'hinttejä',      // fag, pl. partitive
-
 		'huorat',        // whore, pl. nominative
 		'huoralta',      // whore, sg. ablative
 		'huoralla',      // whore, sg. adessive
@@ -92,7 +87,6 @@ array_push($badwords,
 		'huorissa',      // whore, pl. inessive
 		'huorat',        // whore, pl. nominative
 		'huoria',        // whore, pl. partitive
-
 		'kusipäät',      // pisshead, pl. nominative
 		'kusipäältä',    // pisshead, sg. ablative
 		'kusipäällä',    // pisshead, sg. adessive
@@ -112,7 +106,6 @@ array_push($badwords,
 		'kusipäissä',    // pisshead, pl. inessive
 		'kusipäät',      // pisshead, pl. nominative
 		'kusipäitä',     // pisshead, pl. partitive
-
 		'kyrvät',        // cock, pl. nominative
 		'kyrvältä',      // cock, sg. ablative
 		'kyrvällä',      // cock, sg. adessive
@@ -132,7 +125,6 @@ array_push($badwords,
 		'kyrvissä',      // cock, pl. inessive
 		'kyrvät',        // cock, pl. nominative
 		'kyrpiä',        // cock, pl. partitive
-
 		'mulkut',        // dick, pl. nominative
 		'mulkulta',      // dick, sg. ablative
 		'mulkulla',      // dick, sg. adessive
@@ -152,7 +144,6 @@ array_push($badwords,
 		'mulkuissa',     // dick, pl. inessive
 		'mulkut',        // dick, pl. nominative
 		'mulkkuja',      // dick, pl. partitive
-
 		'nartut',        // bitch, pl. nominative
 		'nartulta',      // bitch, sg. ablative
 		'nartulla',      // bitch, sg. adessive
@@ -172,7 +163,6 @@ array_push($badwords,
 		'nartuissa',     // bitch, pl. inessive
 		'nartut',        // bitch, pl. nominative
 		'narttuja',      // bitch, pl. partitive
-
 		'neekerit',      // nigger, pl. nominative
 		'neekeriltä',    // nigger, sg. ablative
 		'neekerillä',    // nigger, sg. adessive
@@ -195,7 +185,6 @@ array_push($badwords,
 		'neekerit',      // nigger, pl. nominative
 		'neekereitä',    // nigger, pl. partitive
 		'neekerejä',     // nigger, pl. partitive
-
 		'paskat',        // shit, pl. nominative
 		'paskalta',      // shit, sg. ablative
 		'paskalla',      // shit, sg. adessive
@@ -215,7 +204,6 @@ array_push($badwords,
 		'paskoissa',     // shit, pl. inessive
 		'paskat',        // shit, pl. nominative
 		'paskoja',       // shit, pl. partitive
-
 		'perhanat',      // deuce, pl. nominative
 		'perhanalta',    // deuce, sg. ablative
 		'perhanalla',    // deuce, sg. adessive
@@ -236,7 +224,6 @@ array_push($badwords,
 		'perhanoissa',   // deuce, pl. inessive
 		'perhanat',      // deuce, pl. nominative
 		'perhanoita',    // deuce, pl. partitive
-
 		'perkeleet',     // devil, pl. nominative
 		'perkeleeltä',   // devil, sg. ablative
 		'perkeleellä',   // devil, sg. adessive
@@ -258,7 +245,6 @@ array_push($badwords,
 		'perkeleissä',   // devil, pl. inessive
 		'perkeleet',     // devil, pl. nominative
 		'perkeleitä',    // devil, pl. partitive
-
 		'perseet',       // ass, pl. nominative
 		'perseeltä',     // ass, sg. ablative
 		'perseellä',     // ass, sg. adessive
@@ -280,7 +266,6 @@ array_push($badwords,
 		'perseissä',     // ass, pl. inessive
 		'perseet',       // ass, pl. nominative
 		'perseitä',      // ass, pl. partitive
-
 		'pillut',        // pussy, pl. nominative
 		'pillulta',      // pussy, sg. ablative
 		'pillulla',      // pussy, sg. adessive
@@ -300,7 +285,6 @@ array_push($badwords,
 		'pilluissa',     // pussy, pl. inessive
 		'pillut',        // pussy, pl. nominative
 		'pilluja',       // pussy, pl. partitive
-
 		'saamarit',      // bloody, pl. nominative
 		'saamarilta',    // bloody, sg. ablative
 		'saamarilla',    // bloody, sg. adessive
@@ -323,7 +307,6 @@ array_push($badwords,
 		'saamarit',      // bloody, pl. nominative
 		'saamareita',    // bloody, pl. partitive
 		'saamareja',     // bloody, pl. partitive
-
 		'saatanat',      // satan, pl. nominative
 		'saatanalta',    // satan, sg. ablative
 		'saatanalla',    // satan, sg. adessive
@@ -344,7 +327,6 @@ array_push($badwords,
 		'saatanoissa',   // satan, pl. inessive
 		'saatanat',      // satan, pl. nominative
 		'saatanoita',    // satan, pl. partitive
-
 		'vittu',         // cunt, interjection, sg. nominative
 		'vitut',         // cunt, pl. nominative
 		'vitulta',       // cunt, sg. ablative
@@ -364,7 +346,6 @@ array_push($badwords,
 		'vituissa',      // cunt, pl. inessive
 		'vitut',         // cunt, pl. nominative
 		'vittuja',       // cunt, pl. partitive
-
 		'ämmät',         // hag, bitch; pl. nominative
 		'ämmältä',       // hag, bitch; sg. ablative
 		'ämmällä',       // hag, bitch; sg. adessive
@@ -384,7 +365,6 @@ array_push($badwords,
 		'ämmissä',       // hag, bitch; pl. inessive
 		'ämmät',         // hag, bitch; pl. nominative
 		'ämmiä',         // hag, bitch; pl. partitive
-
 		'fittu',         // cunt (f- version); interjection, sg. nominative
 		'fitut',         // cunt (f- version); pl. nominative
 		'fitulta',       // cunt (f- version); sg. ablative
@@ -404,7 +384,6 @@ array_push($badwords,
 		'fituissa',      // cunt (f- version); pl. inessive
 		'fitut',         // cunt (f- version); pl. nominative
 		'fittuja',       // cunt (f- version); pl. partitive
-
 		'fiddu',         // cunt (fidd- version); interjection, sg. nominative
 		'fiddut',        // cunt (fidd- version); pl. nominative
 		'fiddulta',      // cunt (fidd- version); sg. ablative
@@ -424,7 +403,6 @@ array_push($badwords,
 		'fidduissa',     // cunt (fidd- version); pl. inessive
 		'fiddut',        // cunt (fidd- version); pl. nominative
 		'fidduja',       // cunt (fidd- version); pl. partitive
-
 		'horo',          // whore; interjection, sg. nominative
 		'horot',         // whore; pl. nominative
 		'horolta',       // whore; sg. ablative
@@ -445,4 +423,3 @@ array_push($badwords,
 		'horot',         // whore; pl. nominative
 		'horoja',        // whore; pl. partitive
 );
-

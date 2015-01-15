@@ -3,7 +3,6 @@
  * PHP Array for French words
  * Original word list from http://bulbapedia.bulbagarden.net/wiki/List_of_censored_words_in_Generation_V
  */
-
 array_push($badwords,
 		'abruti', 		// Idiot (masculine)
 		'abrutie', 		// Idiot (feminine)

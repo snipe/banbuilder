@@ -1,55 +1,9 @@
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=snipe&url=https://github.com/snipe/banbuilder&title=banbuilder&language=PHP&tags=github&category=software)
+BanBuilder Composer Package
+===================
 
-Banbuilder
-==========
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/snipe/banbuilder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/snipe/banbuilder.svg?branch=master)](https://travis-ci.org/snipe/banbuilder) [![Latest Stable Version](https://poser.pugx.org/snipe/banbuilder/v/stable.svg)](https://packagist.org/packages/snipe/banbuilder) [![Total Downloads](https://poser.pugx.org/snipe/banbuilder/downloads.svg)](https://packagist.org/packages/snipe/banbuilder) [![Latest Unstable Version](https://poser.pugx.org/snipe/banbuilder/v/unstable.svg)](https://packagist.org/packages/snipe/banbuilder) [![License](https://poser.pugx.org/snipe/banbuilder/license.svg)](https://packagist.org/packages/snipe/banbuilder)
 
-Banbuilder is a PHP function and bad word database for profanity filtering. The PHP script uses regex to intelligently look for "leetspeak"-style numeric or symbol replacements.
-
-The databases of profanity are located in the `lang/*.wordlist-regex.php` files, and are in a simple PHP array. So far we have translations for:
-
-* US English
-* British English
-* Spain Spanish
-* France French
-* Korean (South)
-* Netherlands Dutch
-* Norwegian (Bokmål & various dialects)
-
-**We are actively looking for translation files!**
-
-Usage
-------
-Simply require the database file and the function file, and invoke the function:
-
-     $badwords = array();
-     include('lang/en-us.wordlist-regex.php');
-     include('censor.function.php');
-     $censored = censorString($input, $badwords);
-
-To use multiple language dictionaries, just include them.
-
-     $badwords = array();
-     include('lang/en-us.wordlist-regex.php');
-     include('lang/fr.wordlist-regex.php');
-     include('lang/es.wordlist-regex.php');
-     include('censor.function.php');
-     $censored = censorString($input, $badwords);
-
-**Make sure you set the `$badwords = array();` before including the dictionaries.**
-
-You end up with an array called `$censored`. You can access the original, uncensored string as `$censored['orig']` and the newly censored string as `$censored['clean']`.
-
-There is an optional string parameter that you can pass to use a different replacement character. For example:
-
-     $censored = censorString($input, $badwords,'X');
-
-Will replace "bitch" to "XXXXX" instead of the default "*****".
-
-If the optional parameter is more than 1 character long, a bad words will be replaced by random strings which are composed by characters taken from the string. For example:
-
-     $censored = censorString($input, $badwords,'X!°#%$@');
-
-Could replace "bitch" to something like "%#@#@" or "%@!X#".
+BanBuilder is a PHP function and bad word database for profanity filtering. The PHP script uses regex to intelligently look for "leetspeak"-style numeric or symbol replacements.
 
 Summary
 -------
@@ -75,17 +29,24 @@ This means that the following all evaluate to the "bitch":
 - ßitch
 - and so on....
 
-Legacy Database
----------------
-When this project was first started, it was used to compile a database of swear words in every permutation for scenarios where regex wasn't possible for whatever reason). While the regex method is much better, the legacy full (non-regexy) databases contain over 800 words ready to use in banned words lists for projects. You can find those badword lists in the word-dbs directory [in the repo](https://github.com/snipe/banbuilder/tree/master/deprecated-word-dbs).
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=snipe&url=https://github.com/snipe/banbuilder&title=banbuilder&language=PHP&tags=github&category=software)
 
-**These files are extra and are not required for the PHP function to run.**
 
-Current file types are:
+-----
 
-- SQL
-- CSV
-- LaTex
-- YML
-- XML
-- PHP Array
+## License
+
+	Copyright (C) 2013 Alison Gianotto - snipe@snipe.net
+
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
