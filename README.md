@@ -16,6 +16,12 @@ There are no additional dependencies required for this package to work.
 Usage
 -------
 
+	use Snipe\BanBuilder\CensorWords;
+	$censor = new CensorWords;
+    $badwords = $censor->setDictionary();
+    $string = $censor->censorString($yourstring,$badwords, '*');
+
+This returns `$string` as an array, where you can access `$string['clean']` for the cleaned version of the `$yourstring`, or `$string['orig']`, which will give you the original `$yourstring`.
 
 Summary
 -------
