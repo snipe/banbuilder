@@ -3,11 +3,23 @@ BanBuilder Composer Package
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/snipe/banbuilder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/snipe/banbuilder.svg?branch=master)](https://travis-ci.org/snipe/banbuilder) [![Latest Stable Version](https://poser.pugx.org/snipe/banbuilder/v/stable.svg)](https://packagist.org/packages/snipe/banbuilder) [![Total Downloads](https://poser.pugx.org/snipe/banbuilder/downloads.svg)](https://packagist.org/packages/snipe/banbuilder) [![Latest Unstable Version](https://poser.pugx.org/snipe/banbuilder/v/unstable.svg)](https://packagist.org/packages/snipe/banbuilder) [![License](https://poser.pugx.org/snipe/banbuilder/license.svg)](https://packagist.org/packages/snipe/banbuilder)
 
-BanBuilder is a PHP function and bad word database for profanity filtering. The PHP script uses regex to intelligently look for "leetspeak"-style numeric or symbol replacements.
+BanBuilder is a PHP package for profanity filtering. The PHP script uses regex to intelligently look for "leetspeak"-style numeric or symbol replacements.
+
+Installing
+-------
+To install BanBuilder, simply include it in your projects's `composer.json`. 
+
+	"snipe/banbuilder": "dev-master",
+
+There are no additional dependencies required for this package to work.
+
+Usage
+-------
+
 
 Summary
 -------
-In a nutshell, this code takes your array of bad words and compares it to an array of common filter-evasion tactics. It then does a string replacement to insert regex parameters into your badwords array, and then evaluates your input string to that expanded banned word list.
+In a nutshell, this code takes an array of bad words and compares it to an array of common filter-evasion tactics. It then does a string replacement to insert regex parameters into your badwords array, and then evaluates your input string to that expanded banned word list.
 
 So in your bad words array, you might have:
 
