@@ -20,7 +20,7 @@ class CensorWords
 			for ($x=0; $x < count($dicts); $x++) {
 				if (file_exists('dict/'.$dicts[$x].'.php')) {
 					include('dict/'.$dicts[$x].'.php');	
-				} else {r
+				} else {
 					// if the file isn't in the dict directory, 
 					// it's probably a custom user library
 					include($dicts[$x]);						
