@@ -36,8 +36,14 @@ class CensorWords
 				
 			} 
 			
+		// if just a single file was passed
 		} elseif (is_string($this->dictionary)) {
-			include('dict/'.$this->dictionary.'.php');	
+			if (file_exists('dict/'.$this->dictionary.'.php')) {	
+				
+			} else {
+				// custom user library
+				include($this->dictionary);						
+			}
 		}
 		
 		$this->badwords = $badwords;
