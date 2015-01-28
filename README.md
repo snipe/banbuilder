@@ -16,12 +16,7 @@ There are no additional dependencies required for this package to work.
 Usage
 -------
 
-	use Snipe\BanBuilder\CensorWords;
-	$censor = new CensorWords;
-    $badwords = $censor->setDictionary();
-    $string = $censor->censorString($yourstring,$badwords, '*');
-
-This returns `$string` as an array, where you can access `$string['clean']` for the cleaned version of the `$yourstring`, or `$string['orig']`, which will give you the original `$yourstring`.
+Please see the [official package website](https://banbuilder.com) for full usage details.
 
 Summary
 -------
@@ -49,6 +44,9 @@ This means that the following all evaluate to the "bitch":
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=snipe&url=https://github.com/snipe/banbuilder&title=banbuilder&language=PHP&tags=github&category=software)
 
+Tests
+-------
+To run the unit tests on this package, simply run `vendor/bin/phpunit` from the package directory.
 
 -----
 
