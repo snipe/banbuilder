@@ -26,8 +26,8 @@ class CensorWords
 		
 		if (is_array($this->dictionary)) {
 			for ($x=0; $x < count($this->dictionary); $x++) {
-				if (file_exists('dict/'.$this->dictionary[$x].'.php')) {
-					include('dict/'.$this->dictionary[$x].'.php');	
+				if (file_exists(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary[$x].'.php')) {
+					include(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary[$x].'.php');	
 				} else {
 					// if the file isn't in the dict directory, 
 					// it's probably a custom user library
@@ -35,17 +35,15 @@ class CensorWords
 				}
 				
 			} 
-			
-		// if just a single file was passed
-		} elseif (is_string($this->dictionary)) {
-			if (file_exists('dict/'.$this->dictionary.'.php')) {	
-				
-			} else {
-				// custom user library
-				include($this->dictionary);						
-			}
-		}
 		
+		// just a single string, not an array	
+		} elseif (is_string($this->dictionary)) {
+			if (file_exists(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary.'.php')) {
+				include(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary.'.php');
+			} else {
+				include($this->dictionary);
+			}
+		}	
 		$this->badwords = $badwords;
 			 
 	}
