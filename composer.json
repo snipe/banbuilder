@@ -3,7 +3,7 @@
     "description": "Library to easily handle profanity filtering in PHP projects.",
 	"keywords": ["profanity", "filter", "strings", "swear", "language"],
 	"license": "AGPL-3.0",
-    "homepage": "https://github.com/snipe/banbuilder",
+    "homepage": "http://banbuilder.com",
 	"authors": [
         {
             "name": "snipe",
@@ -13,7 +13,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "symfony/yaml": "2.6"
     },
     "require-dev": {
         "phpunit/phpunit": "dev-master"
