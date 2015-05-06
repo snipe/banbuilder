@@ -89,9 +89,10 @@ class CensorWords
 	/**
 	 *  Apply censorship to $string, replacing $badwords with $censorChar.
 	 *  @param        string          $string        String to be censored.
+	 *  @param 	  bool    	  $fullWords	 Should only entire words be matched?
 	 *  string[string]
 	 */
-	public function censorString($string) {
+	public function censorString($string, $fullWords = true) {
 			$badwords = $this->badwords;
 			
 			$leet_replace = array();
@@ -128,19 +129,22 @@ class CensorWords
 			$isOneChar = (strlen($this->replacer) === 1);
 
 			for ($x=0; $x<count($badwords); $x++) {
-
 				$replacement[$x] = $isOneChar
 					? str_repeat($this->replacer,strlen($badwords[$x]))
 					: $this->randCensor($this->replacer,strlen($badwords[$x]));
-
-				$badwords[$x] =  '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
+				
+				if($fullWords) {
+					$replacement[$x] = ' ' . $replacement[$x] . ' ';
+					$badwords[$x] = '/ '.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).' /i';
+				} else {
+					$badwords[$x] = '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
+				}
 			}
 
 			$newstring = array();
-			$newstring['orig'] = html_entity_decode($string);
+			$newstring['orig'] = filter_var($string, FILTER_SANITIZE_STRING);
 			$newstring['clean'] =  preg_replace($badwords, $replacement, $newstring['orig']);
 
 			return $newstring;
-
 	}
 }
