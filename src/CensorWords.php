@@ -68,20 +68,8 @@ class CensorWords
 	 */
 	public function randCensor($chars, $len) {
 
-		mt_srand(); // useful for < PHP4.2
-		$lastChar = strlen($chars) - 1;
-		$randOld = -1;
-		$out = '';
-
-		// create $len chars
-		for ($i = $len; $i > 0; $i--) {
-			// generate random char - it must be different from previously generated
-			while (($randNew = mt_rand(0, $lastChar)) === $randOld) { }
-			$randOld = $randNew;
-			$out .= $chars[$randNew];
-		}
-
-		return $out;
+		return str_shuffle(str_repeat($chars, intval($len/strlen($chars))).
+			substr($chars, 0, ($len%strlen($chars))));
 
 	}
 
@@ -93,6 +81,7 @@ class CensorWords
 	 */
 	public function censorString($string) {
 			$badwords = $this->badwords;
+			$anThis = &$this;
 			
 			$leet_replace = array();
 			$leet_replace['a']= '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
@@ -124,21 +113,24 @@ class CensorWords
 
 			$words = explode(" ", $string);
 
-			// is $censorChar a single char?
-			$isOneChar = (strlen($this->replacer) === 1);
-
 			for ($x=0; $x<count($badwords); $x++) {
-
-				$replacement[$x] = $isOneChar
-					? str_repeat($this->replacer,strlen($badwords[$x]))
-					: $this->randCensor($this->replacer,strlen($badwords[$x]));
-
 				$badwords[$x] =  '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
 			}
 
+			$counter=0;
+			$match = array();
 			$newstring = array();
 			$newstring['orig'] = html_entity_decode($string);
-			$newstring['clean'] =  preg_replace($badwords, $replacement, $newstring['orig']);
+			// $anThis for <= PHP5.3
+			$newstring['clean'] =  preg_replace_callback($badwords, function($matches) use (&$anThis,&$counter,&$match) {
+				$match[$counter++] = $matches[0];
+
+				// is $anThis->replacer a single char?
+				return (strlen($anThis->replacer) === 1)
+					? str_repeat($anThis->replacer, strlen($matches[0]))
+					: $anThis->randCensor($anThis->replacer, strlen($matches[0]));
+			}, $newstring['orig']);
+			$newstring['matched'] = $match;
 
 			return $newstring;
 
