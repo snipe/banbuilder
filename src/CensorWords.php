@@ -124,6 +124,7 @@ class CensorWords
 			// $anThis for <= PHP5.3
 			$newstring['clean'] =  preg_replace_callback($badwords, function($matches) use (&$anThis,&$counter,&$match) {
 				$match[$counter++] = $matches[0];
+
 				// is $anThis->replacer a single char?
 				return (strlen($anThis->replacer) === 1)
 					? str_repeat($anThis->replacer, strlen($matches[0]))
