@@ -31,6 +31,19 @@ class CensorTest extends PHPUnit_Framework_TestCase {
     
   }
   
+  public function testWordFuckeryClean()
+  {
+    $censor = new CensorWords;
+    $string = $censor->censorString('abc fuck xyz', true);
+    $this->assertEquals('abc **** xyz', $string['clean']);
+
+    $string2 = $censor->censorString('Hello World', true);
+    $this->assertEquals('Hello World', $string2['clean']);
+
+    $string3 = $censor->censorString('fuck...', true);
+    $this->assertEquals('****...', $string3['clean']);
+  }
+  
   public function testFuckeryOrig()
   {
     $censor = new CensorWords;

@@ -77,9 +77,10 @@ class CensorWords
 	/**
 	 *  Apply censorship to $string, replacing $badwords with $censorChar.
 	 *  @param        string          $string        String to be censored.
+	 *  @param        bool            $fullWords     Option to censor by word only.
 	 *  string[string]
 	 */
-	public function censorString($string) {
+	public function censorString($string, $fullWords = false) {
 			$badwords = $this->badwords;
 			$anThis = &$this;
 			
@@ -114,7 +115,11 @@ class CensorWords
 			$words = explode(" ", $string);
 
 			for ($x=0; $x<count($badwords); $x++) {
-				$badwords[$x] =  '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
+				if($fullWords) {
+					$badwords[$x] =  '/\b'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'\b/i';
+				} else {
+					$badwords[$x] =  '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
+				}
 			}
 
 			$counter=0;
