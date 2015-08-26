@@ -4,6 +4,8 @@ namespace Snipe\BanBuilder;
 
 class CensorWords
 {
+	public $badwords;
+
 	/*
 	* When the dictionary is loaded, a ton of regular expression strings are generated
 	* These regular expressions are used to perform the profanity checks. 
@@ -11,7 +13,8 @@ class CensorWords
 	*/
 	private $censorChecks = null;
 	
-	public function __construct() {	
+	public function __construct() {
+		$this->badwords = array();
 		$this->replacer = '*';
 		$this->setDictionary('en-us');
 	}
@@ -26,33 +29,56 @@ class CensorWords
 	 *  string
 	 */
 	public function setDictionary($dictionary) {
-		
-		$badwords = array();
-		$this->dictionary = $dictionary;
-		
-		if (is_array($this->dictionary)) {
-			for ($x=0; $x < count($this->dictionary); $x++) {
-				if (file_exists(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary[$x].'.php')) {
-					include(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary[$x].'.php');	
-				} else {
-					// if the file isn't in the dict directory, 
-					// it's probably a custom user library
-					include($this->dictionary[$x]);						
-				}
-				
-			} 
-		
-		// just a single string, not an array	
-		} elseif (is_string($this->dictionary)) {
-			if (file_exists(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary.'.php')) {
-				include(__DIR__ . DIRECTORY_SEPARATOR .'dict/'.$this->dictionary.'.php');
-			} else {
-				include($this->dictionary);
-			}
-		}	
-		$this->badwords = $badwords;
+
+		$this->badwords = $this->readBadWords($dictionary);
 	}
-	
+
+	/**
+	 *  Add more the dictionar(y|ies) to current bad words list
+	 *  This can accept a string to a language file path,
+	 *  or an array of strings to multiple paths
+	 *
+	 *  @param		string/array
+	 *  string
+	 */
+	public function addDictionary($dictionary) {
+
+		$this->badwords = array_merge($this->badwords, $this->readBadWords($dictionary));
+	}
+
+	/**
+	 * Read bad words list from dictionar(y|ies) and return it
+	 *
+	 * @param 		string/array
+	 * array
+	 */
+	private function readBadWords($dictionary) {
+		$badwords = array();
+		$baseDictPath = __DIR__ . DIRECTORY_SEPARATOR .'dict/';
+
+		if (is_array($dictionary)) {
+			for ($x=0; $x < count($dictionary); $x++) {
+				if (file_exists($baseDictPath.$dictionary[$x].'.php')) {
+					include($baseDictPath.$dictionary[$x].'.php');
+				} else {
+					// if the file isn't in the dict directory,
+					// it's probably a custom user library
+					include($dictionary[$x]);
+				}
+
+			}
+
+			// just a single string, not an array
+		} elseif (is_string($dictionary)) {
+			if (file_exists($baseDictPath.$dictionary.'.php')) {
+				include($baseDictPath.$dictionary.'.php');
+			} else {
+				include($dictionary);
+			}
+		}
+
+		return $badwords;
+	}
 	
 	/**
 	 *  Sets the replacement character to use
