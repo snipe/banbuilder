@@ -421,5 +421,5 @@ array_push($badwords,
 		'horoihin',      // whore; pl. illative
 		'horoissa',      // whore; pl. inessive
 		'horot',         // whore; pl. nominative
-		'horoja',        // whore; pl. partitive
+		'horoja'        // whore; pl. partitive
 );
