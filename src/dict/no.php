@@ -65,7 +65,7 @@ array_push($badwords,
 		'lort',
 		'masturbasjon',
 		'masturbere',
-		'patte'
+		'patte',
 		'penis',
 		'pess',
 		'pikk',
@@ -114,7 +114,7 @@ array_push($badwords,
 		'rasstryne',
 		'rautryne',
 		'rævtryne',
-		'rævvtryne',
+		'rævvtryne'
 );
 
 // Racial slurs
