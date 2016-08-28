@@ -5,6 +5,7 @@ namespace Snipe\BanBuilder;
 class CensorWords
 {
 	public $badwords;
+	public $forbiddenWords;
 
 	/*
 	* When the dictionary is loaded, a ton of regular expression strings are generated
@@ -29,8 +30,10 @@ class CensorWords
 	 *  string
 	 */
 	public function setDictionary($dictionary) {
-
-		$this->badwords = $this->readBadWords($dictionary);
+		
+	        $words = $this->readBadWords($dictionary);
+		$this->badwords = $words['badwords'];
+		$this->forbiddenWords = $words['forbiddenWords'];
 	}
 
 	/**
@@ -43,7 +46,9 @@ class CensorWords
 	 */
 	public function addDictionary($dictionary) {
 
-		$this->badwords = array_merge($this->badwords, $this->readBadWords($dictionary));
+        	$words = $this->readBadWords($dictionary);
+		$this->badwords = array_merge($this->badwords, $words['badwords']);
+		$this->forbiddenWords = array_merge($this->forbiddenWords, $words['forbiddenWords']);
 	}
 
 	/**
@@ -54,6 +59,7 @@ class CensorWords
 	 */
 	private function readBadWords($dictionary) {
 		$badwords = array();
+		$forbiddenWords = [];
 		$baseDictPath = __DIR__ . DIRECTORY_SEPARATOR .'dict/';
 
 		if (is_array($dictionary)) {
@@ -77,7 +83,12 @@ class CensorWords
 			}
 		}
 
-		return $badwords;
+		$wordList = [
+	            'badwords' => $badwords,
+	            'forbiddenWords' => $forbiddenWords
+	        ];
+	        
+		return $wordList;
 	}
 	
 	/**
@@ -112,6 +123,7 @@ class CensorWords
 	private function generateCensorChecks($fullWords = false) {
 	
 		$badwords = $this->badwords;
+		$forbiddenWords = $this->forbiddenWords;
 		
 		// generate censor checks as soon as we load the dictionary
 		// utilize leet equivalents as well
@@ -147,6 +159,10 @@ class CensorWords
 		for ($x=0; $x<count($badwords); $x++) {
 			$censorChecks[$x] =  $fullWords ? '/\b'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'\b/i' 
 											: '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
+			if(in_array($badwords[$x], $forbiddenWords, true)) {
+	                	$censorChecks[$x] = '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
+	            	}
+			
 		}
 		
 		$this->censorChecks = $censorChecks;
