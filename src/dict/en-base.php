@@ -42,3 +42,7 @@ array_push($badwords,
 		'vulva',
 		'wank'
 );
+array_push($forbiddenWords ,
+    'fuck',
+    'shit'
+);
