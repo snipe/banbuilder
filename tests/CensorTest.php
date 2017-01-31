@@ -36,6 +36,19 @@ class CensorTest extends PHPUnit_Framework_TestCase {
 	$censor = new CensorWords;
     $this->assertNotEmpty($censor->setDictionary('poopfaced-blahblah-this-file-isnt-real'));	  
   }
+
+  public function testLoadMultipleDictionaries()
+  {
+    $censor = new CensorWords();
+    $censor->setDictionary([
+        'en-us',
+        'en-uk',
+        'fr'
+    ]);
+    $this->assertContains('punani', $censor->badwords);
+    $this->assertContains('doggystyle', $censor->badwords);
+    $this->assertContains('salaud', $censor->badwords);
+  }
   
   public function testFuckeryClean()
   {
@@ -61,7 +74,7 @@ class CensorTest extends PHPUnit_Framework_TestCase {
   public function testFuckeryOrig()
   {
     $censor = new CensorWords;
-    $badwords = $censor->setDictionary('en-us');
+    $censor->setDictionary('en-us');
     $string = $censor->censorString('fuck');
     $this->assertEquals('fuck', $string['orig']);
     
@@ -70,7 +83,7 @@ class CensorTest extends PHPUnit_Framework_TestCase {
   public function testFuckeryCustomReplace()
   {
     $censor = new CensorWords;
-    $censor->setReplaceChar("X");
+    $censor->setReplaceChar('X');
     $string = $censor->censorString('fuck');
     $this->assertEquals('XXXX', $string['clean']);
  
@@ -79,7 +92,7 @@ class CensorTest extends PHPUnit_Framework_TestCase {
   public function testFuckeryCustomReplaceException()
   {
     $censor = new CensorWords;
-    $censor->setReplaceChar("x");
+    $censor->setReplaceChar('x');
     $string = $censor->censorString('fuck');
     $this->assertNotEquals('****', $string['clean']);
  
