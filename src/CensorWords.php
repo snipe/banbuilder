@@ -135,7 +135,7 @@ class CensorWords
 		$leet_replace['q']= '(q|q\.|q\-)';
 		$leet_replace['r']= '(r|r\.|r\-|®)';
 		$leet_replace['s']= '(s|s\.|s\-|5|\$|§)';
-		$leet_replace['t']= '(t|t\.|t\-|Τ|τ)';
+		$leet_replace['t']= '(t|t\.|t\-|Τ|τ|7)';
 		$leet_replace['u']= '(u|u\.|u\-|υ|µ)';
 		$leet_replace['v']= '(v|v\.|v\-|υ|ν)';
 		$leet_replace['w']= '(w|w\.|w\-|ω|ψ|Ψ)';
