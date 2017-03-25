@@ -13,6 +13,16 @@ class CensorWords
 	*/
 	private $censorChecks = null;
 
+    /**
+     * @var array
+     */
+	private $whiteList = [];
+
+    /**
+     * @var string
+     */
+	private $whiteListPlaceHolder = ' {whiteList[i]} ';
+
 	public function __construct() {
 		$this->badwords = array();
 		$this->replacer = '*';
@@ -74,6 +84,43 @@ class CensorWords
 
         return  $badwords;
 	}
+
+    /**
+     * List of word to add which will be overridden
+     *
+     * @param array $list
+     */
+    public function addWhileList(array $list)
+    {
+        foreach ($list as $value) {
+            if (is_string($value) && !empty($value)) {
+                $this->whiteList[]['word'] = $value;
+            }
+        }
+    }
+
+    /**
+     * Replace white listed words with placeholders and inversely
+     *
+     * @param $string
+     * @param bool $reverse
+     * @return mixed
+     */
+    private function replaceWhiteListed($string, $reverse = false)
+    {
+        foreach ($this->whiteList as $key => $list) {
+            if ($reverse && !empty($this->whiteList[$key]['placeHolder'])) {
+                $placeHolder = $this->whiteList[$key]['placeHolder'];
+                $string = str_replace($placeHolder, $list['word'], $string);
+            } else {
+                $placeHolder = str_replace('[i]', $key, $this->whiteListPlaceHolder);
+                $this->whiteList[$key]['placeHolder'] = $placeHolder;
+                $string = str_replace($list['word'], $placeHolder, $string);
+            }
+        }
+
+        return $string;
+    }
 
 	/**
 	 *  Sets the replacement character to use
@@ -171,6 +218,7 @@ class CensorWords
         $match     = array();
         $newstring = array();
         $newstring['orig'] = html_entity_decode($string);
+        $original = $this->replaceWhiteListed($newstring['orig']);
         // $anThis for <= PHP5.3
         $newstring['clean'] =  preg_replace_callback(
             $this->censorChecks,
@@ -182,8 +230,9 @@ class CensorWords
                     ? str_repeat($anThis->replacer, strlen($matches[0]))
                     : $anThis->randCensor($anThis->replacer, strlen($matches[0]));
             },
-            $newstring['orig']
+            $original
         );
+        $newstring['clean'] = $this->replaceWhiteListed($newstring['clean'], true);
         $newstring['matched'] = $match;
 
         return $newstring;

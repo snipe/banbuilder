@@ -110,4 +110,18 @@ class CensorTest extends TestCase
 
     }
 
+  public function testWhiteListCensorObj()
+  {
+    $censor = new CensorWords;
+    $censor->addWhileList([
+        'fuck',
+        'ass',
+        'Mass',
+    ]);
+
+    $string = $censor->censorString('fuck dumb ass bitch FUCK Mass');
+    $this->assertEquals('fuck dumb ass ***** **** Mass', $string['clean']);
+  }
+
+
 }
