@@ -61,7 +61,6 @@ class CensorWords
             foreach ($dictionary as $dictionary_file) {
                 $badwords = array_merge($badwords, $this->readBadWords($dictionary_file));
             }
-            $badwords = array_unique($badwords);
 
             // just a single string, not an array
         } elseif (is_string($dictionary)) {
@@ -72,7 +71,7 @@ class CensorWords
             }
         }
 
-        return  $badwords;
+        return  array_values(array_unique($badwords));
 	}
 
 	/**
