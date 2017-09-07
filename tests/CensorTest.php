@@ -113,7 +113,7 @@ class CensorTest extends TestCase
   public function testWhiteListCensorObj()
   {
     $censor = new CensorWords;
-    $censor->addWhileList([
+    $censor->addWhiteList([
         'fuck',
         'ass',
         'Mass',
