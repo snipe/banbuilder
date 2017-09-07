@@ -90,7 +90,7 @@ class CensorWords
      *
      * @param array $list
      */
-    public function addWhileList(array $list)
+    public function addWhiteList(array $list)
     {
         foreach ($list as $value) {
             if (is_string($value) && !empty($value)) {
