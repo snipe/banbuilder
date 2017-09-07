@@ -4,57 +4,58 @@ namespace Snipe\BanBuilder;
 
 class CensorWords
 {
-	public $badwords;
+    public $badwords;
 
-	/*
-	* When the dictionary is loaded, a ton of regular expression strings are generated
-	* These regular expressions are used to perform the profanity checks.
-	* Store them here so when we call censorString we don't need to regenerate them on every call
-	*/
-	private $censorChecks = null;
+    /*
+    * When the dictionary is loaded, a ton of regular expression strings are generated
+    * These regular expressions are used to perform the profanity checks.
+    * Store them here so when we call censorString we don't need to regenerate them on every call
+    */
+    private $censorChecks = null;
 
     /**
      * @var array
      */
-	private $whiteList = [];
+    private $whiteList = [];
 
     /**
      * @var string
      */
-	private $whiteListPlaceHolder = ' {whiteList[i]} ';
+    private $whiteListPlaceHolder = ' {whiteList[i]} ';
 
-	public function __construct() {
-		$this->badwords = array();
-		$this->replacer = '*';
-		$this->setDictionary('en-us');
-	}
+    public function __construct()
+    {
+        $this->badwords = array();
+        $this->replacer = '*';
+        $this->setDictionary('en-us');
+    }
 
 
-	/**
-	 *  Sets the dictionar(y|ies) to use
-	 *  This can accept a string to a language file path,
-	 *  or an array of strings to multiple paths
-	 *
-	 *  @param		string/array
-	 *  string
-	 */
-	public function setDictionary($dictionary) {
+    /**
+     *  Sets the dictionar(y|ies) to use
+     *  This can accept a string to a language file path,
+     *  or an array of strings to multiple paths
+     *
+     * @param        string /array
+     *                      string
+     */
+    public function setDictionary($dictionary)
+    {
+        $this->badwords = $this->readBadWords($dictionary);
+    }
 
-		$this->badwords = $this->readBadWords($dictionary);
-	}
-
-	/**
-	 *  Add more the dictionar(y|ies) to current bad words list
-	 *  This can accept a string to a language file path,
-	 *  or an array of strings to multiple paths
-	 *
-	 *  @param		string/array
-	 *  string
-	 */
-	public function addDictionary($dictionary) {
-
-		$this->badwords = array_merge($this->badwords, $this->readBadWords($dictionary));
-	}
+    /**
+     *  Add more the dictionar(y|ies) to current bad words list
+     *  This can accept a string to a language file path,
+     *  or an array of strings to multiple paths
+     *
+     * @param        string /array
+     *                      string
+     */
+    public function addDictionary($dictionary)
+    {
+        $this->badwords = array_merge($this->badwords, $this->readBadWords($dictionary));
+    }
 
     /**
      * Read bad words list from dictionar(y|ies) and return it
@@ -63,7 +64,8 @@ class CensorWords
      *
      * @return array
      */
-	private function readBadWords($dictionary) {
+    private function readBadWords($dictionary)
+    {
         $badwords     = array();
         $baseDictPath = __DIR__ . DIRECTORY_SEPARATOR . 'dict/';
 
@@ -71,7 +73,6 @@ class CensorWords
             foreach ($dictionary as $dictionary_file) {
                 $badwords = array_merge($badwords, $this->readBadWords($dictionary_file));
             }
-
             // just a single string, not an array
         } elseif (is_string($dictionary)) {
             if (file_exists($baseDictPath . $dictionary . '.php')) {
@@ -81,8 +82,8 @@ class CensorWords
             }
         }
 
-        return  array_values(array_unique($badwords));
-	}
+        return array_values(array_unique($badwords));
+    }
 
     /**
      * List of word to add which will be overridden
@@ -101,8 +102,9 @@ class CensorWords
     /**
      * Replace white listed words with placeholders and inversely
      *
-     * @param $string
+     * @param      $string
      * @param bool $reverse
+     *
      * @return mixed
      */
     private function replaceWhiteListed($string, $reverse = false)
@@ -110,56 +112,58 @@ class CensorWords
         foreach ($this->whiteList as $key => $list) {
             if ($reverse && !empty($this->whiteList[$key]['placeHolder'])) {
                 $placeHolder = $this->whiteList[$key]['placeHolder'];
-                $string = str_replace($placeHolder, $list['word'], $string);
+                $string      = str_replace($placeHolder, $list['word'], $string);
             } else {
-                $placeHolder = str_replace('[i]', $key, $this->whiteListPlaceHolder);
+                $placeHolder                          = str_replace('[i]', $key, $this->whiteListPlaceHolder);
                 $this->whiteList[$key]['placeHolder'] = $placeHolder;
-                $string = str_replace($list['word'], $placeHolder, $string);
+                $string                               = str_replace($list['word'], $placeHolder, $string);
             }
         }
 
         return $string;
     }
 
-	/**
-	 *  Sets the replacement character to use
-	 *
-	 *  @param		string			$replacer        Character to use.
-	 */
-	public function setReplaceChar($replacer) {
-		$this->replacer = $replacer;
-	}
+    /**
+     *  Sets the replacement character to use
+     *
+     * @param        string $replacer Character to use.
+     */
+    public function setReplaceChar($replacer)
+    {
+        $this->replacer = $replacer;
+    }
 
 
     /**
      *  Generates a random string.
      *
      * @param        string $chars Chars that can be used.
-     * @param        int $len Length of the output string.
+     * @param        int    $len   Length of the output string.
      *
      *
      * @return string
      */
-	public function randCensor($chars, $len) {
-
+    public function randCensor($chars, $len)
+    {
         return str_shuffle(
             str_repeat($chars, (int)($len / strlen($chars))) .
             substr($chars, 0, $len % strlen($chars))
         );
+    }
 
-	}
+    /**
+     * Generates the regular expressions that are going to be used to check for profanity
+     *
+     * @param        boolean $fullWords Option to generate regular expressions used for full words instead. Default is
+     *                                  false
+     */
+    private function generateCensorChecks($fullWords = false)
+    {
+        $badwords = $this->badwords;
 
-	/**
-	* Generates the regular expressions that are going to be used to check for profanity
-	* @param		boolean			$fullWords		Option to generate regular expressions used for full words instead. Default is false
-	*/
-	private function generateCensorChecks($fullWords = false) {
-
-		$badwords = $this->badwords;
-
-		// generate censor checks as soon as we load the dictionary
-		// utilize leet equivalents as well
-		$leet_replace = array();
+        // generate censor checks as soon as we load the dictionary
+        // utilize leet equivalents as well
+        $leet_replace      = array();
         $leet_replace['a'] = '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
         $leet_replace['b'] = '(b|b\.|b\-|8|\|3|ß|Β|β)';
         $leet_replace['c'] = '(c|c\.|c\-|Ç|ç|¢|€|<|\(|{|©)';
@@ -187,41 +191,41 @@ class CensorWords
         $leet_replace['y'] = '(y|y\.|y\-|¥|γ|ÿ|ý|Ÿ|Ý)';
         $leet_replace['z'] = '(z|z\.|z\-|Ζ)';
 
-		$censorChecks = array();
+        $censorChecks = array();
         for ($x = 0, $xMax = count($badwords); $x < $xMax; $x++) {
-			$censorChecks[$x] =  $fullWords ? '/\b'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'\b/i'
-											: '/'.str_ireplace(array_keys($leet_replace),array_values($leet_replace), $badwords[$x]).'/i';
-		}
+            $censorChecks[$x] = $fullWords
+                ? '/\b' . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '\b/i'
+                : '/'   . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '/i';
+        }
 
-		$this->censorChecks = $censorChecks;
-
-	}
+        $this->censorChecks = $censorChecks;
+    }
 
     /**
      *  Apply censorship to $string, replacing $badwords with $censorChar.
      *
-     * @param        string $string String to be censored.
-     * @param        bool $fullWords Option to censor by word only.
+     * @param        string $string    String to be censored.
+     * @param        bool   $fullWords Option to censor by word only.
      *
      * @return array
      */
-	public function censorString($string, $fullWords = false) {
-
+    public function censorString($string, $fullWords = false)
+    {
         // generate our censor checks if they are not defined yet
-        if(!$this->censorChecks) {
+        if (!$this->censorChecks) {
             $this->generateCensorChecks($fullWords);
         }
 
-        $anThis    = &$this;
-        $counter   = 0;
-        $match     = array();
-        $newstring = array();
+        $anThis            = &$this;
+        $counter           = 0;
+        $match             = array();
+        $newstring         = array();
         $newstring['orig'] = html_entity_decode($string);
-        $original = $this->replaceWhiteListed($newstring['orig']);
+        $original          = $this->replaceWhiteListed($newstring['orig']);
         // $anThis for <= PHP5.3
-        $newstring['clean'] =  preg_replace_callback(
+        $newstring['clean']   = preg_replace_callback(
             $this->censorChecks,
-            function($matches) use (&$anThis,&$counter,&$match) {
+            function ($matches) use (&$anThis, &$counter, &$match) {
                 $match[$counter++] = $matches[0];
 
                 // is $anThis->replacer a single char?
@@ -231,9 +235,9 @@ class CensorWords
             },
             $original
         );
-        $newstring['clean'] = $this->replaceWhiteListed($newstring['clean'], true);
+        $newstring['clean']   = $this->replaceWhiteListed($newstring['clean'], true);
         $newstring['matched'] = $match;
 
         return $newstring;
-	}
+    }
 }
