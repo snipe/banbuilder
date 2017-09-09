@@ -60,29 +60,37 @@ class CensorWords
     /**
      * Read bad words list from dictionar(y|ies) and return it
      *
-     * @param        string /array
+     * @param       string|array        a language identifier or path for a dictionary (or an array of identifiers/paths)
      *
-     * @return array
+     * @throws      \RuntimeException   if a dictionary file is not found
+     *
+     * @return      array               de-duplicated array of bad words
      */
     private function readBadWords($dictionary)
     {
         $badwords     = array();
-        $baseDictPath = __DIR__ . DIRECTORY_SEPARATOR . 'dict/';
+        $baseDictPath = __DIR__ . DIRECTORY_SEPARATOR . 'dict' . DIRECTORY_SEPARATOR;
 
         if (is_array($dictionary)) {
             foreach ($dictionary as $dictionary_file) {
                 $badwords = array_merge($badwords, $this->readBadWords($dictionary_file));
             }
-            // just a single string, not an array
-        } elseif (is_string($dictionary)) {
+        }
+
+        // just a single string, not an array
+        if (is_string($dictionary)) {
             if (file_exists($baseDictPath . $dictionary . '.php')) {
                 include $baseDictPath . $dictionary . '.php';
-            } else {
+            } elseif (file_exists($dictionary)) {
                 include $dictionary;
+            } else {
+                throw new \RuntimeException('Dictionary file not found: ' . $dictionary);
             }
         }
 
-        return array_values(array_unique($badwords));
+        // counting values and then only returning the keys is said
+        // to be more efficient than array_values(array_unique())
+        return array_keys(array_count_values($badwords));
     }
 
     /**

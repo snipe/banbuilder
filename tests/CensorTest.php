@@ -30,7 +30,7 @@ class CensorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException RuntimeException
      */
     public function testInvalidDictionaryException()
     {
