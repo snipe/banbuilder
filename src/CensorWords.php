@@ -36,8 +36,8 @@ class CensorWords
      *  This can accept a string to a language file path,
      *  or an array of strings to multiple paths
      *
-     * @param        string /array
-     *                      string
+     *  @param		string|array
+     *  @throws     \RuntimeException   if a dictionary file is not found
      */
     public function setDictionary($dictionary)
     {
@@ -49,8 +49,8 @@ class CensorWords
      *  This can accept a string to a language file path,
      *  or an array of strings to multiple paths
      *
-     * @param        string /array
-     *                      string
+     *  @param		string|array
+     *  @throws     \RuntimeException   if a dictionary file is not found
      */
     public function addDictionary($dictionary)
     {
