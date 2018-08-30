@@ -58,6 +58,17 @@ class CensorWords
     }
 
     /**
+     *  Adds more words to current bad words list from an array of words.
+     *
+     *  @param		array
+     */
+    public function addFromArray($words)
+    {
+        $badwords       = array_merge($this->badwords, $words);
+        $this->badwords = array_keys(array_count_values($badwords));
+    }
+
+    /**
      * Read bad words list from dictionar(y|ies) and return it
      *
      * @param       string|array        a language identifier or path for a dictionary (or an array of identifiers/paths)
