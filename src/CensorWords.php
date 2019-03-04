@@ -135,7 +135,7 @@ class CensorWords
             } else {
                 $placeHolder                          = str_replace('[i]', $key, $this->whiteListPlaceHolder);
                 $this->whiteList[$key]['placeHolder'] = $placeHolder;
-                $string                               = str_replace($list['word'], $placeHolder, $string);
+                $string                               = str_ireplace($list['word'], $placeHolder, $string);
             }
         }
 

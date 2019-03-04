@@ -120,7 +120,7 @@ class CensorTest extends TestCase
     ]);
 
     $string = $censor->censorString('fuck dumb ass bitch FUCK Mass');
-    $this->assertEquals('fuck dumb ass ***** **** Mass', $string['clean']);
+    $this->assertEquals('fuck dumb ass ***** fuck Mass', $string['clean']);
   }
 
 
