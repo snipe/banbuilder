@@ -15,5 +15,15 @@ array_push($badwords,
 	'ебальник',	// 	snout nose
 	'пиздец',	// 	fucked up
 	'пиздешь',	// 	bullshit
-	'дерьмо'	// 	shit
+	'дерьмо',	// 	shit
+	'мудак',	//	asshole
+	'пидорас',	//	fagot
+	'херня',	//	nonsense
+	'хер',		//	penis
+	'жопа',		//	fanny
+	'похуй',	//	fuck
+	'гондон',	//	condom
+	'манда',	//	cunt
+	'целка',	//	virgin
+	'говно'		//	turd
 );
