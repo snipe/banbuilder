@@ -25,5 +25,10 @@ array_push($badwords,
 	'гондон',	//	condom
 	'манда',	//	cunt
 	'целка',	//	virgin
-	'говно'		//	turd
+	'говно',	//	turd
+	'шлюха',	//	whore
+	'блядь',	//	slut
+	'ебанулся',	//	fucked
+	'пиздабол',	//	bullshit
+	'гей'		//	gay
 );
