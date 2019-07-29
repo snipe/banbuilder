@@ -48,6 +48,21 @@ Tests
 -------
 To run the unit tests on this package, simply run `vendor/bin/phpunit` from the package directory.
 
+Language support
+-------
+Currently supported languages:
+- Czech;
+- Deutsch;
+- English (UK & US also);
+- Spanish;
+- Finnish;
+- French;
+- Italian;
+- Japanese;
+- Korean;
+- Dutch;
+- Norwegian;
+- Russian;
 -----
 
 ## License
