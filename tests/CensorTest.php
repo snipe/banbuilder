@@ -96,6 +96,13 @@ class CensorTest extends TestCase
 
         $string = $censor->censorString('fuck');
         $this->assertEquals('****', $string['clean']);
+
+        $string = $censor->censorString('f.u.c.k');
+        $this->assertEquals('*******', $string['clean']);
+
+        $censor->setDictionary('my');
+        $string = $censor->censorString('b.o.d.o.h');
+        $this->assertEquals('*********', $string['clean']);
     }
 
     public function testWordFuckeryClean()
@@ -107,12 +114,9 @@ class CensorTest extends TestCase
         $string2 = $censor->censorString('Hello World', true);
         $this->assertEquals('Hello World', $string2['clean']);
 
-        $string3 = $censor->censorString('fuck...', true);
-        $this->assertEquals('****...', $string3['clean']);
-
         $censor->setDictionary('my');
-        $string4 = $censor->censorString('babi', true);
-        $this->assertEquals('****', $string4['clean']);
+        $string4 = $censor->censorString('babi kau', true);
+        $this->assertEquals('**** kau', $string4['clean']);
     }
 
     public function testFuckeryOrig()
