@@ -244,12 +244,12 @@ class CensorWords
         $anThis            = &$this;
         $counter           = 0;
         $match             = array();
-        $newstring         = array();
-        $newstring['orig'] = html_entity_decode($string);
-        $original          = $this->replaceWhiteListed($newstring['orig']);
+        $data              = array();
+        $data['orig']      = html_entity_decode($string);
+        $original          = $this->replaceWhiteListed($data['orig']);
 
         // $anThis for <= PHP5.3
-        $newstring['clean']   = preg_replace_callback(
+        $data['clean']     = preg_replace_callback(
             $this->censorChecks,
             function ($matches) use (&$anThis, &$counter, &$match) {
                 $match[$counter++] = $matches[0];
@@ -260,9 +260,9 @@ class CensorWords
             },
             $original
         );
-        $newstring['clean']   = $this->replaceWhiteListed($newstring['clean'], true);
-        $newstring['matched'] = $match;
+        $data['clean']     = $this->replaceWhiteListed($data['clean'], true);
+        $data['matched']   = $match;
 
-        return $newstring;
+        return $data;
     }
 }
