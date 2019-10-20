@@ -35,7 +35,7 @@ class CensorTest extends TestCase
         $censor = new CensorWords;
         $this->assertNotEmpty($censor->badwords);
 
-        $string1 = $censor->censorString('fuck');
+        $string1 = $censor->censorString('fu*k');
         $this->assertEquals('****', $string1['clean']);
 
         $censor->addDictionary('fr');
