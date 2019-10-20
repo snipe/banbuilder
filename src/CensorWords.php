@@ -2,6 +2,8 @@
 
 namespace Snipe\BanBuilder;
 
+use http\Exception\RuntimeException;
+
 class CensorWords
 {
     public $badwords;
@@ -21,13 +23,16 @@ class CensorWords
     /**
      * @var string
      */
+    private $replacer = '*';
+
+    /**
+     * @var string
+     */
     private $whiteListPlaceHolder = ' {whiteList[i]} ';
 
-    public function __construct()
+    public function __construct($dictionary = ['en-base', 'en-us'])
     {
-        $this->badwords = array();
-        $this->replacer = '*';
-        $this->setDictionary('en-us');
+        $this->setDictionary($dictionary);
     }
 
 
@@ -37,10 +42,11 @@ class CensorWords
      *  or an array of strings to multiple paths
      *
      *  @param		string|array
-     *  @throws     \RuntimeException   if a dictionary file is not found
      */
     public function setDictionary($dictionary)
     {
+        $this->censorChecks = null;
+        $this->badwords = [];
         $this->badwords = $this->readBadWords($dictionary);
     }
 
@@ -50,10 +56,10 @@ class CensorWords
      *  or an array of strings to multiple paths
      *
      *  @param		string|array
-     *  @throws     \RuntimeException   if a dictionary file is not found
      */
     public function addDictionary($dictionary)
     {
+        $this->censorChecks = null; //refresh censorChecks
         $this->badwords = array_merge($this->badwords, $this->readBadWords($dictionary));
     }
 
@@ -73,13 +79,14 @@ class CensorWords
      *
      * @param       string|array        a language identifier or path for a dictionary (or an array of identifiers/paths)
      *
-     * @throws      \RuntimeException   if a dictionary file is not found
-     *
      * @return      array               de-duplicated array of bad words
      */
     private function readBadWords($dictionary)
     {
-        $badwords     = array();
+        if (!$dictionary)
+            throw new RuntimeException("Dictionary Path Cannot be Null");
+
+        $badwords     = [];
         $baseDictPath = __DIR__ . DIRECTORY_SEPARATOR . 'dict' . DIRECTORY_SEPARATOR;
 
         if (is_array($dictionary)) {
@@ -91,17 +98,17 @@ class CensorWords
         // just a single string, not an array
         if (is_string($dictionary)) {
             if (file_exists($baseDictPath . $dictionary . '.php')) {
-                include $baseDictPath . $dictionary . '.php';
+                $badwords = array_merge($badwords, require $baseDictPath . $dictionary . '.php');
             } elseif (file_exists($dictionary)) {
-                include $dictionary;
+                $badwords = array_merge($badwords, require $dictionary);
             } else {
-                throw new \RuntimeException('Dictionary file not found: ' . $dictionary);
+                $badwords = array_merge($badwords, []); //instead of throw exception, just return empty array
             }
         }
 
         // counting values and then only returning the keys is said
         // to be more efficient than array_values(array_unique())
-        return array_keys(array_count_values($badwords));
+        return $badwords;
     }
 
     /**
@@ -138,7 +145,6 @@ class CensorWords
                 $string                               = str_replace($list['word'], $placeHolder, $string);
             }
         }
-
         return $string;
     }
 
@@ -183,32 +189,32 @@ class CensorWords
         // generate censor checks as soon as we load the dictionary
         // utilize leet equivalents as well
         $leet_replace      = array();
-        $leet_replace['a'] = '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
-        $leet_replace['b'] = '(b|b\.|b\-|8|\|3|ß|Β|β)';
-        $leet_replace['c'] = '(c|c\.|c\-|Ç|ç|¢|€|<|\(|{|©)';
-        $leet_replace['d'] = '(d|d\.|d\-|&part;|\|\)|Þ|þ|Ð|ð)';
-        $leet_replace['e'] = '(e|e\.|e\-|3|€|È|è|É|é|Ê|ê|∑)';
-        $leet_replace['f'] = '(f|f\.|f\-|ƒ)';
-        $leet_replace['g'] = '(g|g\.|g\-|6|9)';
-        $leet_replace['h'] = '(h|h\.|h\-|Η)';
-        $leet_replace['i'] = '(i|i\.|i\-|!|\||\]\[|]|1|∫|Ì|Í|Î|Ï|ì|í|î|ï)';
-        $leet_replace['j'] = '(j|j\.|j\-)';
-        $leet_replace['k'] = '(k|k\.|k\-|Κ|κ)';
-        $leet_replace['l'] = '(l|1\.|l\-|!|\||\]\[|]|£|∫|Ì|Í|Î|Ï)';
-        $leet_replace['m'] = '(m|m\.|m\-)';
-        $leet_replace['n'] = '(n|n\.|n\-|η|Ν|Π)';
-        $leet_replace['o'] = '(o|o\.|o\-|0|Ο|ο|Φ|¤|°|ø)';
-        $leet_replace['p'] = '(p|p\.|p\-|ρ|Ρ|¶|þ)';
-        $leet_replace['q'] = '(q|q\.|q\-)';
-        $leet_replace['r'] = '(r|r\.|r\-|®)';
-        $leet_replace['s'] = '(s|s\.|s\-|5|\$|§)';
-        $leet_replace['t'] = '(t|t\.|t\-|Τ|τ|7)';
-        $leet_replace['u'] = '(u|u\.|u\-|υ|µ)';
-        $leet_replace['v'] = '(v|v\.|v\-|υ|ν)';
-        $leet_replace['w'] = '(w|w\.|w\-|ω|ψ|Ψ)';
-        $leet_replace['x'] = '(x|x\.|x\-|Χ|χ)';
-        $leet_replace['y'] = '(y|y\.|y\-|¥|γ|ÿ|ý|Ÿ|Ý)';
-        $leet_replace['z'] = '(z|z\.|z\-|Ζ)';
+        $leet_replace['a'] = '(a*[~!@#$%^&*.]|a|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
+        $leet_replace['b'] = '(b*[~!@#$%^&*.]|b|b\-|8|\|3|ß|Β|β)';
+        $leet_replace['c'] = '(c*[~!@#$%^&*.]|c|c\-|Ç|ç|¢|€|<|\(|{|©)';
+        $leet_replace['d'] = '(d*[~!@#$%^&*.]|d|d\-|&part;|\|\)|Þ|þ|Ð|ð)';
+        $leet_replace['e'] = '(e*[~!@#$%^&*.]|e|e\-|3|€|È|è|É|é|Ê|ê|∑)';
+        $leet_replace['f'] = '(f*[~!@#$%^&*.]|f|f\-|ƒ)';
+        $leet_replace['g'] = '(g*[~!@#$%^&*.]|g|g\-|6|9)';
+        $leet_replace['h'] = '(h*[~!@#$%^&*.]|h|h\-|Η)';
+        $leet_replace['i'] = '(i*[~!@#$%^&*.]|i|i\-|!|\||\]\[|]|1|∫|Ì|Í|Î|Ï|ì|í|î|ï)';
+        $leet_replace['j'] = '(j*[~!@#$%^&*.]|j|j\-)';
+        $leet_replace['k'] = '(k*[~!@#$%^&*.]|k|k\-|Κ|κ)';
+        $leet_replace['l'] = '(l*[~!@#$%^&*.]|l|l\-|!|\||\]\[|]|£|∫|Ì|Í|Î|Ï)';
+        $leet_replace['m'] = '(m*[~!@#$%^&*.]|m|m\-)';
+        $leet_replace['n'] = '(n*[~!@#$%^&*.]|n|n\-|η|Ν|Π)';
+        $leet_replace['o'] = '(o*[~!@#$%^&*.]|o|o\-|0|Ο|ο|Φ|¤|°|ø)';
+        $leet_replace['p'] = '(p*[~!@#$%^&*.]|p|p\-|ρ|Ρ|¶|þ)';
+        $leet_replace['q'] = '(q*[~!@#$%^&*.]|q|q\-)';
+        $leet_replace['r'] = '(r*[~!@#$%^&*.]|r|r\-|®)';
+        $leet_replace['s'] = '(s*[~!@#$%^&*.]|s|s\-|5|\$|§)';
+        $leet_replace['t'] = '(t*[~!@#$%^&*.]|t|t\-|Τ|τ|7)';
+        $leet_replace['u'] = '(u*[~!@#$%^&*.]|u|u\-|υ|µ)';
+        $leet_replace['v'] = '(v*[~!@#$%^&*.]|v|v\-|υ|ν)';
+        $leet_replace['w'] = '(w*[~!@#$%^&*.]|w|w\-|ω|ψ|Ψ)';
+        $leet_replace['x'] = '(x*[~!@#$%^&*.]|x|x\-|Χ|χ)';
+        $leet_replace['y'] = '(y*[~!@#$%^&*.]|y|y\-|¥|γ|ÿ|ý|Ÿ|Ý)';
+        $leet_replace['z'] = '(z*[~!@#$%^&*.]|z|z\-|Ζ)';
 
         $censorChecks = array();
         for ($x = 0, $xMax = count($badwords); $x < $xMax; $x++) {
@@ -241,12 +247,12 @@ class CensorWords
         $newstring         = array();
         $newstring['orig'] = html_entity_decode($string);
         $original          = $this->replaceWhiteListed($newstring['orig']);
+
         // $anThis for <= PHP5.3
         $newstring['clean']   = preg_replace_callback(
             $this->censorChecks,
             function ($matches) use (&$anThis, &$counter, &$match) {
                 $match[$counter++] = $matches[0];
-
                 // is $anThis->replacer a single char?
                 return (strlen($anThis->replacer) === 1)
                     ? str_repeat($anThis->replacer, strlen($matches[0]))

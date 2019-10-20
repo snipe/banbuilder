@@ -7,35 +7,56 @@ use Snipe\BanBuilder\CensorWords;
 
 class CensorTest extends TestCase
 {
-
-    public function testSetDictionary()
+    public function testReadExistingDictionary()
     {
         $censor = new CensorWords;
         $censor->setDictionary('fr');
+        $this->assertNotEmpty($censor->badwords);
+
+        $censor->setDictionary('es');
+        $this->assertNotEmpty($censor->badwords);
+
+        $censor->setDictionary('my');
+        $this->assertNotEmpty($censor->badwords);
+
+        $censor->setDictionary('id');
+        $this->assertNotEmpty($censor->badwords);
+    }
+
+    public function testReadExternalDictionary()
+    {
+        $censor = new CensorWords;
+        $censor->setDictionary(__DIR__.'/testFile/my.php');
         $this->assertNotEmpty($censor->badwords);
     }
 
     public function testAddDictionary()
     {
-        $censor = new CensorWords();
-        $censor->addDictionary('fr');
-
+        $censor = new CensorWords;
         $this->assertNotEmpty($censor->badwords);
 
         $string1 = $censor->censorString('fuck');
         $this->assertEquals('****', $string1['clean']);
 
+        $censor->addDictionary('fr');
         $string2 = $censor->censorString('nique');
         $this->assertEquals('*****', $string2['clean']);
+
+
+        $censor->addDictionary('my');
+        $string2 = $censor->censorString('anak haram');
+        $this->assertEquals('**********', $string2['clean']);
+
+        $string3 = $censor->censorString('babi');
+        $this->assertEquals('****', $string3['clean']);
+
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
-    public function testInvalidDictionaryException()
+    public function testNotExistDictionary()
     {
         $censor = new CensorWords;
-        $this->assertNotEmpty($censor->setDictionary('poopfaced-blahblah-this-file-isnt-real'));
+        $censor->setDictionary('poopfaced-blahblah-this-file-isnt-real');
+        $this->assertEmpty($censor->badwords);
     }
 
     public function testLoadMultipleDictionaries()
@@ -44,19 +65,37 @@ class CensorTest extends TestCase
         $censor->setDictionary(array(
             'en-us',
             'en-uk',
-            'fr'
+            'fr',
+            'my'
         ));
         $this->assertContains('punani', $censor->badwords);
         $this->assertContains('doggystyle', $censor->badwords);
         $this->assertContains('salaud', $censor->badwords);
+        $this->assertContains('babi', $censor->badwords);
+    }
+
+    public function testNotExistFuckeryWord()
+    {
+        $censor = new CensorWords;
+        $censor->setDictionary('fr');
+        $string = $censor->censorString('fuck');
+        $this->assertEquals('fuck', $string['clean']);
     }
 
     public function testFuckeryClean()
     {
         $censor = new CensorWords;
-        $string = $censor->censorString('fuck');
+        $string = $censor->censorString('f.ck');
         $this->assertEquals('****', $string['clean']);
 
+        $string = $censor->censorString('fu*k');
+        $this->assertEquals('****', $string['clean']);
+
+        $string = $censor->censorString('fu*k');
+        $this->assertEquals('****', $string['clean']);
+
+        $string = $censor->censorString('fuck');
+        $this->assertEquals('****', $string['clean']);
     }
 
     public function testWordFuckeryClean()
@@ -70,15 +109,17 @@ class CensorTest extends TestCase
 
         $string3 = $censor->censorString('fuck...', true);
         $this->assertEquals('****...', $string3['clean']);
+
+        $censor->setDictionary('my');
+        $string4 = $censor->censorString('babi', true);
+        $this->assertEquals('****', $string4['clean']);
     }
 
     public function testFuckeryOrig()
     {
         $censor = new CensorWords;
-        $censor->setDictionary('en-us');
         $string = $censor->censorString('fuck');
         $this->assertEquals('fuck', $string['orig']);
-
     }
 
     public function testFuckeryCustomReplace()
@@ -96,32 +137,33 @@ class CensorTest extends TestCase
         $censor->setReplaceChar('x');
         $string = $censor->censorString('fuck');
         $this->assertNotEquals('****', $string['clean']);
-
     }
-
 
     public function testSameCensorObj()
     {
         $censor = new CensorWords;
         $string = $censor->censorString('fuck');
         $this->assertEquals('****', $string['clean']);
-        $string2 = $censor->censorString('fuck');
+
+        $censor->setDictionary('my');
+        $string2 = $censor->censorString('babi');
         $this->assertEquals('****', $string2['clean']);
 
     }
 
-  public function testWhiteListCensorObj()
-  {
-    $censor = new CensorWords;
-    $censor->addWhiteList([
-        'fuck',
-        'ass',
-        'Mass',
-    ]);
+    public function testWhiteListCensorObj()
+    {
+        $censor = new CensorWords;
+        $censor->addWhiteList([
+            'fuck',
+            'ass',
+            'Mass',
+        ]);
 
-    $string = $censor->censorString('fuck dumb ass bitch FUCK Mass');
-    $this->assertEquals('fuck dumb ass ***** **** Mass', $string['clean']);
-  }
+        $string = $censor->censorString('fuck dumb ass bitch FUCK Mass');
+        $this->assertEquals('fuck dumb ass ***** **** Mass', $string['clean']);
 
-
+        $string = $censor->censorString('f*ck dumb ass bitch FUCK Mass');
+        $this->assertEquals('**** dumb ass ***** **** Mass', $string['clean']);
+    }
 }
