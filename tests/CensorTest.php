@@ -66,7 +66,7 @@ class CensorTest extends TestCase
             'en-us',
             'en-uk',
             'fr',
-            'my'
+            __DIR__.'/testFile/my.php'
         ));
         $this->assertContains('punani', $censor->badwords);
         $this->assertContains('doggystyle', $censor->badwords);
