@@ -7,7 +7,7 @@
  */
 
 // General insults and rudeness
-array_push($badwords,
+return [
     'arschfotze',
     'arschgeige',
     'arschgesicht',
@@ -76,4 +76,4 @@ array_push($badwords,
     'hitler',
     'heil',
     'opfer'
-);
+];
