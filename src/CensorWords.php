@@ -5,6 +5,7 @@ namespace Snipe\BanBuilder;
 class CensorWords
 {
     public $badwords;
+    private $replacer = '*';
 
     /*
     * When the dictionary is loaded, a ton of regular expression strings are generated
