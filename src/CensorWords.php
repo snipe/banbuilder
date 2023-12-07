@@ -184,38 +184,51 @@ class CensorWords
         // generate censor checks as soon as we load the dictionary
         // utilize leet equivalents as well
         $leet_replace      = array();
-        $leet_replace['a'] = '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
-        $leet_replace['b'] = '(b|b\.|b\-|8|\|3|ß|Β|β)';
-        $leet_replace['c'] = '(c|c\.|c\-|Ç|ç|¢|€|<|\(|{|©)';
+        $leet_replace['a'] = '(a|a\.|a\-|а|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
+        $leet_replace['b'] = '(b|b\.|b\-|в|8|\|3|ß|Β|β)';
+        $leet_replace['c'] = '(c|c\.|c\-|c|Ç|ç|¢|€|<|\(|{|©)';
         $leet_replace['d'] = '(d|d\.|d\-|&part;|\|\)|Þ|þ|Ð|ð)';
-        $leet_replace['e'] = '(e|e\.|e\-|3|€|È|è|É|é|Ê|ê|∑)';
+        $leet_replace['e'] = '(e|e\.|e\-|е|3|€|È|è|É|é|Ê|ê|∑)';
         $leet_replace['f'] = '(f|f\.|f\-|ƒ)';
         $leet_replace['g'] = '(g|g\.|g\-|6|9)';
-        $leet_replace['h'] = '(h|h\.|h\-|Η)';
+        $leet_replace['h'] = '(h|h\.|h\-|н|Η)';
         $leet_replace['i'] = '(i|i\.|i\-|!|\||\]\[|]|1|∫|Ì|Í|Î|Ï|ì|í|î|ï)';
         $leet_replace['j'] = '(j|j\.|j\-)';
-        $leet_replace['k'] = '(k|k\.|k\-|Κ|κ)';
+        $leet_replace['k'] = '(k|k\.|k\-|к|Κ|κ)';
         $leet_replace['l'] = '(l|1\.|l\-|!|\||\]\[|]|£|∫|Ì|Í|Î|Ï)';
-        $leet_replace['m'] = '(m|m\.|m\-)';
+        $leet_replace['m'] = '(m|m\.|m\-|м)';
         $leet_replace['n'] = '(n|n\.|n\-|η|Ν|Π)';
-        $leet_replace['o'] = '(o|o\.|o\-|0|Ο|ο|Φ|¤|°|ø)';
-        $leet_replace['p'] = '(p|p\.|p\-|ρ|Ρ|¶|þ)';
+        $leet_replace['o'] = '(o|o\.|o\-|о|0|Ο|ο|Φ|¤|°|ø)';
+        $leet_replace['p'] = '(p|p\.|p\-|р|ρ|Ρ|¶|þ)';
         $leet_replace['q'] = '(q|q\.|q\-)';
         $leet_replace['r'] = '(r|r\.|r\-|®)';
         $leet_replace['s'] = '(s|s\.|s\-|5|\$|§)';
-        $leet_replace['t'] = '(t|t\.|t\-|Τ|τ|7)';
+        $leet_replace['t'] = '(t|t\.|t\-|т|Τ|τ|7)';
         $leet_replace['u'] = '(u|u\.|u\-|υ|µ)';
         $leet_replace['v'] = '(v|v\.|v\-|υ|ν)';
         $leet_replace['w'] = '(w|w\.|w\-|ω|ψ|Ψ)';
-        $leet_replace['x'] = '(x|x\.|x\-|Χ|χ)';
-        $leet_replace['y'] = '(y|y\.|y\-|¥|γ|ÿ|ý|Ÿ|Ý)';
+        $leet_replace['x'] = '(x|x\.|x\-|х|Χ|χ)';
+        $leet_replace['y'] = '(y|y\.|y\-|у|¥|γ|ÿ|ý|Ÿ|Ý)';
         $leet_replace['z'] = '(z|z\.|z\-|Ζ)';
+        //cyrillic
+        $leet_replace['а'] = '(а|а\.|а\-|4|@|a|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
+        $leet_replace['б'] = '(б|б\.|б\-|b|8|\|3|ß|Β|β)';
+        $leet_replace['с'] = '(с|с\.|с\-|c|Ç|ç|¢|€|<|\(|{|©)';
+        $leet_replace['е'] = '(е|е\.|е\-|e|3|€|È|è|É|é|Ê|ê|∑)';
+        $leet_replace['н'] = '(н|н\.|н\-|h|Η)';
+        $leet_replace['к'] = '(к|к\.|к\-|k|Κ|κ)';
+        $leet_replace['м'] = '(м|м\.|м\-|m)';
+        $leet_replace['о'] = '(о|о\.|о\-|o|0|Ο|ο|Φ|¤|°|ø)';
+        $leet_replace['р'] = '(р|р\.|р\-|p|ρ|Ρ|¶|þ)';
+        $leet_replace['т'] = '(т|т\.|т\-|t|Τ|τ|7)';
+        $leet_replace['х'] = '([х]|х\.|х\-|x|Χ|χ)';
+        $leet_replace['у'] = '(у|у\.|у\-|y|¥|γ|ÿ|ý|Ÿ|Ý)';
 
         $censorChecks = array();
         for ($x = 0, $xMax = count($badwords); $x < $xMax; $x++) {
             $censorChecks[$x] = $fullWords
-                ? '/\b' . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '\b/i'
-                : '/'   . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '/i';
+                ? '/\b' . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '\b/iu'
+                : '/'   . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '/iu';
         }
 
         $this->censorChecks = $censorChecks;
