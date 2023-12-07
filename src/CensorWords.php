@@ -214,7 +214,7 @@ class CensorWords
         $censorChecks = array();
         for ($x = 0, $xMax = count($badwords); $x < $xMax; $x++) {
             $censorChecks[$x] = $fullWords
-                ? '/\b' . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '\b/i'
+                ? '/\b' . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '/i'
                 : '/'   . str_ireplace(array_keys($leet_replace), array_values($leet_replace), $badwords[$x]) . '/i';
         }
 
